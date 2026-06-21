@@ -219,5 +219,5 @@ export default function App() {
         onClose={handleCloseLightbox}
       />
     </div>
-  );
-}
+  }  
+);
