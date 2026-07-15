@@ -12,8 +12,8 @@ export default function ExperienceTab({ onOpenLightbox }: ExperienceTabProps) {
   const [wiseAiImgIdx, setWiseAiImgIdx] = useState(0);
   const [stcImgIdx, setStcImgIdx] = useState(0);
 
-  const wiseAiImages = ["/WISE AI.jpeg", "/WISE AI 2.jpeg"];
-  const stcImages = ["/STC grp1.jpeg", "/STC grp2.jpeg"];
+  const wiseAiImages = ["./WISE AI.jpeg", "./WISE AI 2.jpeg"];
+  const stcImages = ["./STC grp1.jpeg", "./STC grp2.jpeg"];
 
   useEffect(() => {
     const timer1 = setInterval(() => {
@@ -309,7 +309,7 @@ export default function ExperienceTab({ onOpenLightbox }: ExperienceTabProps) {
               <div className="flex items-center gap-4">
                 <div className="h-14 w-14 sm:h-16 sm:w-16 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center p-1 select-none shrink-0 overflow-hidden shadow-xs">
                   <img
-                    src="/STC.png"
+                    src="./STC.png"
                     alt="Sunway Tech Club Logo"
                     referrerPolicy="no-referrer"
                     className="h-full w-full object-contain rounded-lg"
@@ -390,7 +390,7 @@ export default function ExperienceTab({ onOpenLightbox }: ExperienceTabProps) {
               <div className="flex items-center gap-4">
                 <div className="h-14 w-14 sm:h-16 sm:w-16 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center p-1 select-none shrink-0 overflow-hidden shadow-xs">
                   <img
-                    src="/SEG.jpg"
+                    src="./SEG.jpg"
                     alt="Sunway Student Life Logo"
                     referrerPolicy="no-referrer"
                     className="h-full w-full object-contain rounded-lg"
@@ -418,14 +418,14 @@ export default function ExperienceTab({ onOpenLightbox }: ExperienceTabProps) {
               {/* SEG Group Photo */}
               <div className="mt-5 flex flex-col items-center w-full">
                 <div
-                  onClick={() => onOpenLightbox('/SEG Open Day.jpeg', 'Sunway Student Life Campus Tour Guide & Student Ambassador - Open Day')}
+                  onClick={() => onOpenLightbox('./SEG Open Day.jpeg', 'Sunway Student Life Campus Tour Guide & Student Ambassador - Open Day')}
                   className="group relative overflow-hidden rounded-xl border border-slate-200 bg-slate-50 p-1.5 cursor-zoom-in shadow-xs hover:shadow-md hover:border-accent/40 transition-all duration-300 w-full max-w-[400px] aspect-[4/3] flex items-center justify-center"
                   title="Click to expand photo"
                 >
                   <motion.img
                     initial={{ opacity: 0.95 }}
                     animate={{ opacity: 1 }}
-                    src="/SEG Open Day.jpeg"
+                    src="./SEG Open Day.jpeg"
                     alt="Sunway Student Life Open Day"
                     referrerPolicy="no-referrer"
                     className="h-full w-full object-cover rounded-lg transition-transform duration-300 group-hover:scale-[1.03]"

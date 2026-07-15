@@ -106,7 +106,7 @@ export default function HomeTab({ onOpenLightbox, setActiveTab }: HomeTabProps) 
             </button>
 
             <a
-              href="/ZiXuanLim_CV.pdf"
+              href="./ZiXuanLim_CV.pdf"
               download="ZiXuanLim_CV.pdf"
               className="flex items-center gap-1.5 px-5 py-2.5 text-xs sm:text-sm font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg cursor-pointer transition-all"
             >
@@ -219,7 +219,7 @@ export default function HomeTab({ onOpenLightbox, setActiveTab }: HomeTabProps) 
               <div className="absolute inset-0 z-10 bg-transparent" />
 
               <img
-                src="/zx.jpeg"
+                src="./zx.jpeg"
                 alt="Zi Xuan Lim"
                 referrerPolicy="no-referrer"
                 className="h-80 w-80 sm:h-96 sm:w-96 rounded-xl object-cover select-none pointer-events-none"

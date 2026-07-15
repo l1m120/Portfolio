@@ -709,14 +709,14 @@ function EducationDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLigh
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const documents = {
-    transcript: ['/public/degree-transcript.jpg'],
-    jcf: ['/JCF cert.jpg'],
+    transcript: ['./degree-transcript.jpg'],
+    jcf: ['./JCF cert.jpg'],
     deansList: [
-      '/DeanList-Apr2024.pdf.jpg',
-      '/DeanList-Sept2024.pdf.jpg',
-      '/DeanList-Feb2025.pdf.jpg',
-      '/DeanList-Apr2025.pdf.jpg',
-      '/DeanList-Sept2025.pdf.jpg'
+      './DeanList-Apr2024.pdf.jpg',
+      './DeanList-Sept2024.pdf.jpg',
+      './DeanList-Feb2025.pdf.jpg',
+      './DeanList-Apr2025.pdf.jpg',
+      './DeanList-Sept2025.pdf.jpg'
     ]
   };
 
@@ -903,8 +903,8 @@ function FistDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLightbox:
   const [activeCategory, setActiveCategory] = useState<'transcript' | 'presidentsAward'>('transcript');
 
   const documents = {
-    transcript: '/FIST Trancsript.jpg',
-    presidentsAward: '/FIST Presidents Award.jpg'
+    transcript: './FIST Trancsript.jpg',
+    presidentsAward: './FIST Presidents Award.jpg'
   };
 
   const activeImagePath = documents[activeCategory];
@@ -1022,9 +1022,9 @@ function SpmDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLightbox: 
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const documents: Record<'spm' | 'cefr' | 'robotics', string[]> = {
-    spm: ['/SPM Certificate.jpg'],
-    cefr: ['/SPM CEFR.jpg'],
-    robotics: ['/rero state.png', '/rero district.png', '/stem.png']
+    spm: ['./SPM Certificate.jpg'],
+    cefr: ['./SPM CEFR.jpg'],
+    robotics: ['./rero state.png', './rero district.png', './stem.png']
   };
 
   const activeCategoryList = documents[activeCategory];

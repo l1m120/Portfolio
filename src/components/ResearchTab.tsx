@@ -9,8 +9,8 @@ interface ResearchTabProps {
 
 function WrenWinnerSlideshow({ onOpenLightbox, awardTitle }: { onOpenLightbox: (src: string, alt: string) => void; awardTitle: string }) {
   const slides = [
-    { path: "/WREN preface.png", label: "Website Winner Announcement - Preface", filename: "WREN_PREFACE.PNG" },
-    { path: "/WREN web.png", label: "Website Winner Announcement - Detail", filename: "WREN_WEB.PNG" }
+    { path: "./WREN preface.png", label: "Website Winner Announcement - Preface", filename: "WREN_PREFACE.PNG" },
+    { path: "./WREN web.png", label: "Website Winner Announcement - Detail", filename: "WREN_WEB.PNG" }
   ];
   const [slideIdx, setSlideIdx] = useState(0);
 
@@ -202,14 +202,14 @@ function EducationDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLigh
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const documents = {
-    transcript: ['/public/degree-transcript.jpg'],
-    jcf: ['/JCF cert.jpg'],
+    transcript: ['./degree-transcript.jpg'],
+    jcf: ['./JCF cert.jpg'],
     deansList: [
-      '/DeanList-Apr2024.pdf.jpg',
-      '/DeanList-Sept2024.pdf.jpg',
-      '/DeanList-Feb2025.pdf.jpg',
-      '/DeanList-Apr2025.pdf.jpg',
-      '/DeanList-Sept2025.pdf.jpg'
+      './DeanList-Apr2024.pdf.jpg',
+      './DeanList-Sept2024.pdf.jpg',
+      './DeanList-Feb2025.pdf.jpg',
+      './DeanList-Apr2025.pdf.jpg',
+      './DeanList-Sept2025.pdf.jpg'
     ]
   };
 
@@ -396,8 +396,8 @@ function FistDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLightbox:
   const [activeCategory, setActiveCategory] = useState<'transcript' | 'presidentsAward'>('transcript');
 
   const documents = {
-    transcript: '/FIST Trancsript.jpg',
-    presidentsAward: '/FIST Presidents Award.jpg'
+    transcript: './FIST Trancsript.jpg',
+    presidentsAward: './FIST Presidents Award.jpg'
   };
 
   const activeImagePath = documents[activeCategory];
@@ -515,9 +515,9 @@ function SpmDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLightbox: 
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const documents: Record<'spm' | 'cefr' | 'robotics', string[]> = {
-    spm: ['/SPM Certificate.jpg'],
-    cefr: ['/SPM CEFR.jpg'],
-    robotics: ['/rero state.png', '/rero district.png', '/stem.png']
+    spm: ['./SPM Certificate.jpg'],
+    cefr: ['./SPM CEFR.jpg'],
+    robotics: ['./rero state.png', './rero district.png', './stem.png']
   };
 
   const activeCategoryList = documents[activeCategory];
@@ -722,7 +722,7 @@ export default function ResearchTab({ onOpenLightbox }: ResearchTabProps) {
       id: 'drone',
       title: 'Journal of Electrical and Computer Engineering',
       filename: 'jece.pdf',
-      path: '/Journal of Electrical and Computer Engineering - 2026 - Teoh - Recent Advancements  Challenges  and Future Directions of.pdf',
+      path: './Journal of Electrical and Computer Engineering - 2026 - Teoh - Recent Advancements  Challenges  and Future Directions of.pdf',
       abstract: 'Abstract: The implementation of unmanned aerial vehicles (UAVs) or drones has gained immense attention in recent years due to their high potential in enhancing traffic management in a smart city context. This systematic review aims to provide a thorough analysis of the applications of drones in smart traffic management, and limitations and challenges upon technology adoption, as well as future research directions in this field. The search was conducted by following the Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) method to identify relevant articles based on inclusion and exclusion criteria published in the past 10 years, specifically from January 1, 2014, to September 19, 2024. By analyzing the final selection of 14 research articles from databases such as Scopus, ScienceDirect, SpringerOpen, ACM Digital Library, and EBSCO, the results reveal that integrating UAVs into smart city traffic management provides substantial advantages in the perspectives of both ground monitoring and airspace control. This systematic review also contributes to offering a solid foundation for researchers or stakeholders to gain a thorough understanding of drone technologies in making revolutionary breakthroughs within the field of traffic-related aspect to strengthen the transportation system in smart cities.',
       correspondingPub: publications[0]
     },
@@ -730,7 +730,7 @@ export default function ResearchTab({ onOpenLightbox }: ResearchTabProps) {
       id: 'wren',
       title: 'Women Research Engineer Network (WREN) Symposium 2025',
       filename: 'wren-manuscript.pdf',
-      path: '/Proceedings-WREN-Symposium-2025-extracted.pdf',
+      path: './Proceedings-WREN-Symposium-2025-extracted.pdf',
       abstract: 'Abstract: Resilient, quality, sustainable and reliable infrastructure are dominant to enhance urban transportation as aligned with Sustainable Development Goals (SDG) 9 and 11 by promoting sustainable industrialization. Existing research merely focuses on evaluating the performance of detection models across different techniques and technologies. This study aims to examine the variations in deep learning model design and computational hardware in influencing vehicle detection performance. Several segmentation and detection models were trained and evaluated under different preprocessing techniques and Graphics Processing Units (GPU) environments. The results show that blurring irrelevant regions remarkably enhanced the detection performance while heavy augmentation increased the training time despite maintaining accuracy. Hardware advancements greatly reduced training time with only minor improvement in detection. The findings emphasize the importance of equipping computing configurations to build a more scalable and resilient traffic surveillance system that can support smart city initiatives through accurate and faster vehicle detection. ',
       correspondingPub: publications[2]
     },
@@ -738,7 +738,7 @@ export default function ResearchTab({ onOpenLightbox }: ResearchTabProps) {
       id: 'iwait',
       title: 'International Workshop on Advanced Image Technology (IWAIT) 2026',
       filename: 'iwait-abstract.pdf',
-      path: '/IWAIT2026_paper_29.pdf',
+      path: './IWAIT2026_paper_29.pdf',
       abstract: 'Abstract: This study proposes MY-VID (MalaYsia Vehicle Image Dataset), a novel open-source vehicle dataset tailored to Malaysian road conditions emphasizing on commercial and private vehicles classification. Motivated by high road accident fatality rates and the absence of localized datasets in Southeast Asia (SEA), this study introduces a privacy-compliant annotated image dataset captured from Malaysian highway. All stages from data collection, anonymization, preprocessing and augmentation were conducted offline to prioritize data security and privacy. These privacy safeguards allowed the dataset to be safely released as an open-source resource on the Zenodo platform for public accessibility. Benchmark experiments with YOLO11 and YOLO12 demonstrate strong performance and highlight the importance of localized dataset in vehicle detection accuracy. The dataset and training framework aim to support future research in intelligent transportation system (ITS), traffic safety analysis and road infrastructure development in Malaysia.',
       correspondingPub: publications[3]
     }
@@ -1073,7 +1073,7 @@ export default function ResearchTab({ onOpenLightbox }: ResearchTabProps) {
                           className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-[1.01]"
                           onError={(e) => {
                             if (award.id === 'award-wren') {
-                              e.currentTarget.src = '/WREN cert.png';
+                              e.currentTarget.src = './WREN cert.png';
                             } else {
                               const seed = 'scholarship';
                               e.currentTarget.src = `https://picsum.photos/seed/${seed}/600/450`;

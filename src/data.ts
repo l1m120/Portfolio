@@ -30,7 +30,7 @@ export const industryExperience: ExperienceItem[] = [
     organization: "WISE AI Malaysia Sdn. Bhd.",
     location: "Bandar Sunway, Selangor",
     duration: "January 2026 – April 2026",
-    imagePath: "/wise-ai-internship.jpg",
+    imagePath: "./wise-ai-internship.jpg",
     metrics: [
       { label: "DOMAIN FOCUS", value: "eKYC & Anti-Fraud" },
       { label: "VISION ARCHITECTURES", value: "MobileNet & YOLO" },
@@ -53,7 +53,7 @@ export const researchExperience: ExperienceItem[] = [
     organization: "Research Centre for Human-Machine Collaboration (HUMAC) | Sunway University",
     location: "Bandar Sunway, Selangor",
     duration: "June 2024 – January 2026",
-    imagePath: "/HUMAC.jpeg",
+    imagePath: "./HUMAC.jpeg",
     bullets: [
       "Academic Support: Assisted PhD candidate in research project integrating computer vision into UAVs for Malaysian flood rescue operations.",
       "UAV Integration: Designed and assembled a custom-built drone, including hardware setup, circuit integration, and flight software configuration to support data collection for research.",
@@ -130,7 +130,7 @@ export const publications: PublicationItem[] = [
     year: "2026",
     doi: "10.1155/jece/7869329",
     doiUrl: "https://doi.org/10.1155/jece/7869329",
-    pdfPath: "/primary-manuscript.pdf"
+    pdfPath: "./primary-manuscript.pdf"
   },
   {
     id: "pub-flood-malaysia",
@@ -140,7 +140,7 @@ export const publications: PublicationItem[] = [
     type: "journal",
     status: "In Preparation",
     year: "2026",
-    pdfPath: "/iwait-abstract.pdf" // Using a placeholder PDF or abstraction
+    pdfPath: "./iwait-abstract.pdf" // Using a placeholder PDF or abstraction
   },
   {
     id: "pub-wren-2025",
@@ -150,7 +150,7 @@ export const publications: PublicationItem[] = [
     type: "conference",
     status: "Best Presentation Award",
     year: "2025",
-    pdfPath: "/wren-manuscript.pdf",
+    pdfPath: "./wren-manuscript.pdf",
     websiteUrl: "https://thewren.global/event/wren-symposium-2025/"
   },
   {
@@ -161,7 +161,7 @@ export const publications: PublicationItem[] = [
     type: "conference",
     status: "Extended Abstract Accepted",
     year: "2026",
-    pdfPath: "/iwait-abstract.pdf"
+    pdfPath: "./iwait-abstract.pdf"
   },
   {
     id: "pub-zenodo-dataset",
@@ -172,7 +172,7 @@ export const publications: PublicationItem[] = [
     year: "2025",
     doi: "10.5281/zenodo.16866508",
     doiUrl: "https://doi.org/10.5281/zenodo.16866508",
-    pdfPath: "/iwait-abstract.pdf" // Placeholder document download
+    pdfPath: "./iwait-abstract.pdf" // Placeholder document download
   }
 ];
 
@@ -186,7 +186,7 @@ export const educationHistory: EducationItem[] = [
     cgpa: "3.98/4.00",
     coursework: ["Machine Learning", "Computer Vision", "Data Mining", "Predictive Modeling", "Model Evaluation"],
     honor: "Jeffrey Cheah Foundation (JCF) Scholarship (100% Tuition Fee Waiver for outstanding academic performance)",
-    imagePath: "/jcf-ceremony.jpg"
+    imagePath: "./jcf-ceremony.jpg"
   },
   {
     id: "edu-fist",
@@ -197,7 +197,7 @@ export const educationHistory: EducationItem[] = [
     cgpa: "4.00/4.00",
     coursework: ["Computer Science Track", "Algorithmic Foundations", "Technical Sciences"],
     honor: "Awarded Sunway University President’s Award to the highest scoring student",
-    imagePath: "/foundation-cert.jpg"
+    imagePath: "./foundation-cert.jpg"
   },
   {
     id: "edu-spm",
@@ -208,7 +208,7 @@ export const educationHistory: EducationItem[] = [
     cgpa: "10As (5A+, 2A, 3A-)",
     coursework: ["Computer Science", "Advanced Mathematics", "Physics", "Mathematics", "Chemistry"],
     honor: "Top Achiever Award for high academic standing among SPM 2021 cohort",
-    imagePath: "/SPM cert.png"
+    imagePath: "./SPM cert.png"
   }
 ];
 
@@ -221,8 +221,8 @@ export const honorsAwards: AwardItem[] = [
     year: "2025",
     description: "Awarded for outstanding research presentation on 'Advancing Smart Traffic Infrastructure with AI-based Vehicle Detection Across Computing Configurations'. An exclusive one-on-one career development session with Dr. Shelda Debowski was conducted as recognition of the award. Dr. Debowski is a renowned expert in academic career development, leadership, and research strategy, and she offers valuable insights to help researchers effectively navigate their career pathways.",
     images: [
-      { path: "/WREN cert.png", label: "Official Certificate" },
-      { path: "/WREN preface.png", label: "Winner Announcement" }
+      { path: "./WREN cert.png", label: "Official Certificate" },
+      { path: "./WREN preface.png", label: "Winner Announcement" }
     ]
   },
   {
@@ -233,8 +233,8 @@ export const honorsAwards: AwardItem[] = [
     year: "2025",
     description: "Conducted an official research visit with thesis supervisor Prof. Yap Kian Meng to the Malaysian Public Works Department (JKR). Fostered a productive strategic collaboration aimed at enhancing Malaysia's Intelligent Transportation System (ITS) infrastructure, local AI-based vehicle tracking benchmarks, and future deployment roadmaps.",
     images: [
-      { path: "/JKR pic.jpeg", label: "Research Visitation & Group Photo" },
-      { path: "/JKR present.png", label: "ITS Roadmap Presentation" }
+      { path: "./JKR pic.jpeg", label: "Research Visitation & Group Photo" },
+      { path: "./JKR present.png", label: "ITS Roadmap Presentation" }
     ]
   },
   {
@@ -245,8 +245,8 @@ export const honorsAwards: AwardItem[] = [
     year: "2023",
     description: "Awarded the highly prestigious, fully-funded Jeffrey Cheah Foundation Scholarship (100% Tuition Fee Waiver) for pursuing a Bachelor of Science (Honours) in Computer Science at Sunway University. Selected based on outstanding academic excellence, leadership caliber, and potential to drive innovative technological advancements.",
     images: [
-      { path: "/JCF ind.jpeg", label: "Jeffrey Cheah Scholarship Presentation" },
-      { path: "/JCF grp.jpg", label: "Jeffrey Cheah Scholarship Presentation" }
+      { path: "./JCF ind.jpeg", label: "Jeffrey Cheah Scholarship Presentation" },
+      { path: "./JCF grp.jpg", label: "Jeffrey Cheah Scholarship Presentation" }
     ]
   }
 ];
