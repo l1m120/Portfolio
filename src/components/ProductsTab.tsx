@@ -12,7 +12,7 @@ const mockMediaDB = [
 ];
 
 export default function ProductsTab() {
-  const [activeTab, setActiveTab] = useState<'cozy-corner' | 'homestay'>('cozy-corner');
+  const [activeTab, setActiveTab] = useState<'cozy-corner' | 'homestay'>('homestay');
 
   // ----------- Xuan's Cozy Corner Interactive State -----------
   const [mediaItems, setMediaItems] = useState(mockMediaDB);
@@ -78,7 +78,7 @@ export default function ProductsTab() {
         </p>
       </div>
 
-      {/* Case Study Switch Tab buttons */}
+      {/* Case Study Switch Tab buttons (Temporarily hidden)
       <div className="flex rounded-xl bg-slate-100 p-1 max-w-sm border border-slate-200">
         <button
           onClick={() => setActiveTab('cozy-corner')}
@@ -101,6 +101,7 @@ export default function ProductsTab() {
           88 Homestay Yong Peng
         </button>
       </div>
+      */}
 
       <AnimatePresence mode="wait">
         {activeTab === 'cozy-corner' ? (
