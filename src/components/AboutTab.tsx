@@ -1022,7 +1022,7 @@ function SpmDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLightbox: 
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const documents: Record<'spm' | 'cefr' | 'robotics', string[]> = {
-    spm: ['./SPM Certificate.jpg'],
+    spm: ['./SPM Certificate.jpg', './spm sijil.png'],
     cefr: ['./SPM CEFR.jpg'],
     robotics: ['./rero state.png', './rero district.png', './stem.png']
   };
@@ -1042,7 +1042,9 @@ function SpmDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLightbox: 
   const getLabel = () => {
     switch (activeCategory) {
       case 'spm':
-        return 'Sijil Pelajaran Malaysia (SPM) Certificate';
+        return currentIndex === 0
+          ? 'Sijil Pelajaran Malaysia (SPM) Certificate (Results)'
+          : 'Sijil Pelajaran Malaysia (SPM) Certificate (Official Sijil)';
       case 'cefr':
         return 'SPM CEFR English Statement of Result';
       case 'robotics':
@@ -1096,7 +1098,7 @@ function SpmDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLightbox: 
               className="h-full w-full object-contain"
               onError={(e) => {
                 // Highly robust fallback mechanism: use Picsum when local files do not exist yet (portrait dimension)
-                const seed = activeCategory === 'spm' ? 'spm-cert' : activeCategory === 'cefr' ? 'cefr-cert' : `robotics-${currentIndex}`;
+                const seed = activeCategory === 'spm' ? `spm-cert-${currentIndex}` : activeCategory === 'cefr' ? 'cefr-cert' : `robotics-${currentIndex}`;
                 e.currentTarget.src = `https://picsum.photos/seed/${seed}/600/850`;
               }}
             />
@@ -1114,8 +1116,8 @@ function SpmDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLightbox: 
             <ZoomIn className="h-4 w-4" />
           </button>
 
-          {/* Carousel Controls (Robotics arrows overlay) */}
-          {activeCategory === 'robotics' && activeCategoryList.length > 1 && (
+          {/* Carousel Controls (arrows overlay for multi-image categories) */}
+          {activeCategoryList.length > 1 && (
             <>
               <button
                 onClick={handlePrev}
@@ -1134,8 +1136,8 @@ function SpmDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLightbox: 
             </>
           )}
 
-          {/* Dot indicators overlay for Robotics awards */}
-          {activeCategory === 'robotics' && activeCategoryList.length > 1 && (
+          {/* Dot indicators overlay for multi-image categories */}
+          {activeCategoryList.length > 1 && (
             <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-black/50 backdrop-blur-md px-2 py-1 rounded-full z-10" onClick={(e) => e.stopPropagation()}>
               {activeCategoryList.map((_, idx) => (
                 <button
