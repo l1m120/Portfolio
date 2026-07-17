@@ -709,7 +709,7 @@ function EducationDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLigh
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const documents = {
-    transcript: ['./degree-transcript.jpg'],
+    transcript: ['./transcript_1.jpg', './transcript_2.jpg', './transcript_3.jpg'],
     jcf: ['./JCF cert.jpg'],
     deansList: [
       './DeanList-Apr2024.pdf.jpg',
@@ -736,7 +736,9 @@ function EducationDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLigh
   const getLabel = () => {
     switch (activeCategory) {
       case 'transcript':
-        return 'Official Transcript';
+        return activeCategoryList.length > 1
+          ? `Official Transcript (Page ${currentIndex + 1})`
+          : 'Official Transcript';
       case 'jcf':
         return 'JCF Scholarship Certificate';
       case 'deansList':
@@ -795,7 +797,7 @@ function EducationDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLigh
                 className="h-full w-full object-contain"
                 onError={(e) => {
                   // Highly robust fallback mechanism: use Picsum when local files do not exist yet (portrait dimension)
-                  const seed = activeCategory === 'transcript' ? 'transcript-doc' : activeCategory === 'jcf' ? 'jcf-cert' : `deanslist-term-${currentIndex + 4}`;
+                  const seed = activeCategory === 'transcript' ? `transcript-doc-${currentIndex}` : activeCategory === 'jcf' ? 'jcf-cert' : `deanslist-term-${currentIndex + 4}`;
                   e.currentTarget.src = `https://picsum.photos/seed/${seed}/600/850`;
                 }}
               />
@@ -814,8 +816,8 @@ function EducationDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLigh
             <ZoomIn className="h-4 w-4" />
           </button>
 
-          {/* Carousel Controls (Dean's List arrows overlay) */}
-          {activeCategory === 'deansList' && activeCategoryList.length > 1 && (
+          {/* Carousel Controls (arrows overlay for multi-image categories) */}
+          {activeCategoryList.length > 1 && (
             <>
               <button
                 onClick={handlePrev}
@@ -834,8 +836,8 @@ function EducationDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLigh
             </>
           )}
 
-          {/* Dot indicators overlay for Dean's List (5 dots) */}
-          {activeCategory === 'deansList' && activeCategoryList.length > 1 && (
+          {/* Dot indicators overlay for multi-image categories */}
+          {activeCategoryList.length > 1 && (
             <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-black/50 backdrop-blur-md px-2 py-1 rounded-full z-10" onClick={(e) => e.stopPropagation()}>
               {activeCategoryList.map((_, idx) => (
                 <button
@@ -844,7 +846,13 @@ function EducationDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLigh
                   className={`h-1.5 w-1.5 rounded-full transition-all duration-200 cursor-pointer border-0 ${
                     idx === currentIndex ? 'bg-white scale-110 px-1' : 'bg-white/40 hover:bg-white/80'
                   }`}
-                  title={`Show Semester ${idx + 4} Certificate`}
+                  title={
+                    activeCategory === 'deansList'
+                      ? `Show Semester ${idx + 4} Certificate`
+                      : activeCategory === 'transcript'
+                      ? `Show Page ${idx + 1}`
+                      : `Show Certificate ${idx + 1}`
+                  }
                 />
               ))}
             </div>
