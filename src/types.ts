@@ -60,6 +60,8 @@ export interface AwardItem {
   issuer: string;
   year: string;
   description: string;
+  category?: 'research' | 'academic' | 'collaboration' | 'leadership';
+  badge?: string;
   images: {
     path: string;
     label: string;

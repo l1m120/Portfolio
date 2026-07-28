@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'motion/react';
 
 interface ResearchTabProps {
   onOpenLightbox: (src: string, alt: string) => void;
+  setActiveTab?: (tab: any) => void;
 }
 
 function WrenWinnerSlideshow({ onOpenLightbox, awardTitle }: { onOpenLightbox: (src: string, alt: string) => void; awardTitle: string }) {
@@ -703,7 +704,7 @@ function SpmDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLightbox: 
   );
 }
 
-export default function ResearchTab({ onOpenLightbox }: ResearchTabProps) {
+export default function ResearchTab({ onOpenLightbox, setActiveTab }: ResearchTabProps) {
   // state to manage the active document in the viewer
   const [selectedDocId, setSelectedDocId] = useState<'drone' | 'wren' | 'iwait'>('drone');
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -992,155 +993,35 @@ export default function ResearchTab({ onOpenLightbox }: ResearchTabProps) {
         </div>
       </section>
 
-      {/* MODULE 2: Honors Gallery & Visual Proof */}
-      <section id="honors-gallery-section" className="space-y-8">
-        <div className="border-b border-slate-200 pb-4">
-          <h2 className="flex items-center gap-2.5 text-2xl font-extrabold tracking-tight text-slate-900">
-            <Award className="h-6 w-6 text-accent" />
-            Honors Gallery & Visual Proof
-          </h2>
-          <p className="text-sm text-slate-500 mt-1">
-            Academic achievements, symposium awards, and corroborating winner screenshots
-          </p>
-        </div>
-
-        {honorsAwards.map((award) => (
-          <div
-            key={award.id}
-            id={`award-block-${award.id}`}
-            className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 space-y-6 shadow-sm hover:border-accent/40 hover:-translate-y-[2px] transition-all duration-300"
-          >
-            <div className="flex flex-wrap items-start justify-between gap-4">
-              <div className="space-y-1">
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-emerald-500/10 text-emerald-700 border border-emerald-500/20">
-                  {award.id === 'award-wren'
-                    ? `${award.year} International Award`
-                    : award.id === 'award-jkr-collaboration'
-                    ? `${award.year} Research Collaboration`
-                    : `${award.year} Academic Scholarship`}
-                </span>
-                <h3 className="text-2xl font-black text-slate-900">{award.title}</h3>
-                <div className="text-sm font-semibold text-accent">
-                  {award.event} | <span className="text-slate-500">{award.issuer}</span>
-                </div>
-              </div>
+      {/* Callout section for Dedicated Honors & Awards Tab */}
+      <section id="honors-callout-section" className="rounded-2xl border border-amber-200/80 bg-amber-50/50 p-6 sm:p-8 space-y-4 shadow-xs">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="space-y-1 max-w-2xl">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-amber-500/15 text-amber-800 border border-amber-500/30">
+              <Award className="h-3.5 w-3.5 text-amber-600" />
+              <span>Dedicated Honors Tab</span>
             </div>
-
+            <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+              Honors, Academic Awards & Visual Proofs
+            </h2>
             <p className="text-sm text-slate-600 leading-relaxed">
-              {award.id === 'award-wren' ? (
-                <>
-                  Awarded for outstanding research presentation on{' '}
-                  <strong className="font-extrabold text-slate-900">
-                    'Advancing Smart Traffic Infrastructure with AI-based Vehicle Detection Across Computing Configurations'
-                  </strong>
-                  . An exclusive one-on-one career development session with{' '}
-                  <a
-                    href="https://shelda.debowski.com.au/about/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-extrabold text-sky-600 hover:underline inline-flex items-center gap-0.5"
-                  >
-                    Dr. Shelda Debowski
-                    <ExternalLink className="h-3 w-3 inline-block shrink-0" />
-                  </a>{' '}
-                  was conducted as recognition of the award.{' '}
-                  Dr. Debowski is a renowned expert in academic career development, leadership, and research strategy, and she offers valuable insights to help researchers effectively navigate their career pathways.
-                </>
-              ) : (
-                award.description
-              )}
-            </p>
-
-            {/* Grid of Image Containers dynamically centered if there is only 1 image */}
-            <div
-              id={`${award.id}-gallery-grid`}
-              className={`grid grid-cols-1 ${
-                (award.images.length > 1 && award.id !== 'award-jkr-collaboration') || award.id === 'award-wren' ? 'md:grid-cols-2' : 'max-w-xl mx-auto'
-              } gap-6`}
-            >
-              {award.id === 'award-jkr-collaboration' ? (
-                <JkrCollaborationSlideshow
-                  onOpenLightbox={onOpenLightbox}
-                  awardTitle={award.title}
-                  images={award.images}
-                />
-              ) : (
-                <>
-                  {/* First Item: Official Certificate or Visitation Photo */}
-                  {award.images[0] && (
-                    <div
-                      onClick={() => onOpenLightbox(award.images[0].path, `${award.title} - ${award.images[0].label}`)}
-                      className="group relative overflow-hidden rounded-xl border border-slate-200/80 bg-slate-50 p-2 shadow-xs hover:shadow-md transition-all duration-300 hover:scale-[1.01] cursor-zoom-in"
-                      title="Click to zoom in"
-                    >
-                      <div className="aspect-[4/3] w-full overflow-hidden rounded-lg bg-white relative flex items-center justify-center">
-                        <img
-                          src={award.images[0].path}
-                          alt={award.images[0].label}
-                          referrerPolicy="no-referrer"
-                          className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-[1.01]"
-                          onError={(e) => {
-                            if (award.id === 'award-wren') {
-                              e.currentTarget.src = './WREN cert.png';
-                            } else {
-                              const seed = 'scholarship';
-                              e.currentTarget.src = `https://picsum.photos/seed/${seed}/600/450`;
-                            }
-                          }}
-                        />
-                        <div className="absolute top-3 right-3 rounded-full bg-black/60 backdrop-blur-md p-1.5 text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                          <ZoomIn className="h-4 w-4" />
-                        </div>
-                      </div>
-                      <div className="mt-3 flex items-center justify-between text-xs px-1">
-                        <span className="font-bold text-slate-800 leading-none">{award.images[0].label}</span>
-                        <span className="text-[10px] font-mono font-bold text-slate-400">
-                          {award.id === 'award-wren'
-                            ? 'WREN_CERT.PNG'
-                            : 'JCF_SCHOLARSHIP_CEREMONY.JPG'}
-                        </span>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Second Item: Auto Sliding Slideshow of Website winner announcement (Preface & Web) for WREN */}
-                  {award.id === 'award-wren' ? (
-                    <WrenWinnerSlideshow onOpenLightbox={onOpenLightbox} awardTitle={award.title} />
-                  ) : (
-                    award.images[1] && (
-                      <div
-                        onClick={() => onOpenLightbox(award.images[1].path, `${award.title} - ${award.images[1].label}`)}
-                        className="group relative overflow-hidden rounded-xl border border-slate-200/80 bg-slate-50 p-2 shadow-xs hover:shadow-md transition-all duration-300 hover:scale-[1.01] cursor-zoom-in"
-                        title="Click to zoom in"
-                      >
-                        <div className="aspect-[4/3] w-full overflow-hidden rounded-lg bg-white relative flex items-center justify-center">
-                          <img
-                            src={award.images[1].path}
-                            alt={award.images[1].label}
-                            referrerPolicy="no-referrer"
-                            className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-[1.01]"
-                          />
-                          <div className="absolute top-3 right-3 rounded-full bg-black/60 backdrop-blur-md p-1.5 text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                            <ZoomIn className="h-4 w-4" />
-                          </div>
-                        </div>
-                        <div className="mt-3 flex items-center justify-between text-xs px-1">
-                          <span className="font-bold text-slate-800 leading-none">{award.images[1].label}</span>
-                          <span className="text-[10px] font-mono font-bold text-slate-400">
-                            {award.images[1].path.split('/').pop()?.toUpperCase() || 'WREN_SYM_2.PNG'}
-                          </span>
-                        </div>
-                      </div>
-                    )
-                  )}
-                </>
-              )}
-            </div>
-            <p className="text-xs text-slate-400 text-center font-medium mt-2">
-              Click any image above to expand the full-size proof layout.
+              Explore the dedicated <strong className="text-slate-900">Honors Tab</strong> featuring academic awards, 100% merit scholarships, Dean's List certificates, symposium presentation awards, and national research collaborations.
             </p>
           </div>
-        ))}
+
+          {setActiveTab && (
+            <button
+              onClick={() => {
+                setActiveTab('honors');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-xs font-bold rounded-xl bg-slate-900 text-white hover:bg-accent transition-all duration-300 shadow-xs hover:shadow-md cursor-pointer shrink-0"
+            >
+              <Award className="h-4 w-4" />
+              <span>View All Honors & Awards</span>
+            </button>
+          )}
+        </div>
       </section>
     </div>
   );

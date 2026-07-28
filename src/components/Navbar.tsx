@@ -1,7 +1,7 @@
 import { Menu, X, Cpu, GraduationCap, Award, Briefcase, FileText, User, FlaskConical, Layers, BookOpen, Mail } from 'lucide-react';
 import { useState } from 'react';
 
-type TabId = 'home' | 'about' | 'research' | 'products' | 'experience' | 'contact';
+type TabId = 'home' | 'about' | 'honors' | 'research' | 'products' | 'experience' | 'contact';
 
 interface NavbarProps {
   activeTab: TabId;
@@ -15,6 +15,7 @@ export default function Navbar({ activeTab, setActiveTab, personalName }: Navbar
   const tabs: { id: TabId; label: string; icon: any }[] = [
     { id: 'home', label: 'Home', icon: Cpu },
     { id: 'about', label: 'About', icon: User },
+    { id: 'honors', label: 'Honors', icon: Award },
     { id: 'research', label: 'Research', icon: GraduationCap },
     { id: 'products', label: 'Products', icon: Layers },
     { id: 'experience', label: 'Experience', icon: Briefcase },

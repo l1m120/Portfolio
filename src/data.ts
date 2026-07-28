@@ -219,6 +219,8 @@ export const honorsAwards: AwardItem[] = [
     event: "Women Research Engineers Network (WREN) Symposium 2025",
     issuer: "University of Wollongong (UoW), Australia",
     year: "2025",
+    category: "research",
+    badge: "International Award",
     description: "Awarded for outstanding research presentation on 'Advancing Smart Traffic Infrastructure with AI-based Vehicle Detection Across Computing Configurations'. An exclusive one-on-one career development session with Dr. Shelda Debowski was conducted as recognition of the award. Dr. Debowski is a renowned expert in academic career development, leadership, and research strategy, and she offers valuable insights to help researchers effectively navigate their career pathways.",
     images: [
       { path: "./WREN cert.png", label: "Official Certificate" },
@@ -231,6 +233,8 @@ export const honorsAwards: AwardItem[] = [
     event: "Bachelor's Degree Capstone Project Research Collaboration",
     issuer: "Malaysian Public Works Department (JKR) & Sunway University",
     year: "2025",
+    category: "collaboration",
+    badge: "Research Collaboration",
     description: "Conducted an official research visit with thesis supervisor Prof. Yap Kian Meng to the Malaysian Public Works Department (JKR). Fostered a productive strategic collaboration aimed at enhancing Malaysia's Intelligent Transportation System (ITS) infrastructure, local AI-based vehicle tracking benchmarks, and future deployment roadmaps.",
     images: [
       { path: "./JKR pic.jpeg", label: "Research Visitation & Group Photo" },
@@ -243,10 +247,52 @@ export const honorsAwards: AwardItem[] = [
     event: "Scholarship Award Ceremony 2023",
     issuer: "Jeffrey Cheah Foundation (JCF)",
     year: "2023",
+    category: "academic",
+    badge: "100% Tuition Waiver",
     description: "Awarded the highly prestigious, fully-funded Jeffrey Cheah Foundation Scholarship (100% Tuition Fee Waiver) for pursuing a Bachelor of Science (Honours) in Computer Science at Sunway University. Selected based on outstanding academic excellence, leadership caliber, and potential to drive innovative technological advancements.",
     images: [
       { path: "./JCF ind.jpeg", label: "Jeffrey Cheah Scholarship Presentation" },
       { path: "./JCF grp.jpg", label: "Jeffrey Cheah Scholarship Presentation" }
+    ]
+  },
+  {
+    id: "award-deans-list",
+    title: "Dean's List Award (5 Consecutive Semesters)",
+    event: "School of Engineering & Technology Academic Excellence",
+    issuer: "Sunway University",
+    year: "2024 – 2025",
+    category: "academic",
+    badge: "Academic Excellence",
+    description: "Consistently recognized on the Dean's List for 5 consecutive semesters in the Bachelor of Science (Honours) in Computer Science program for maintaining exemplary academic performance with a CGPA of 3.98/4.00.",
+    images: [
+      { path: "./DeanList-Apr2025.pdf.jpg", label: "Dean's List Certificate (Latest)" }
+    ]
+  },
+  {
+    id: "award-presidents-award",
+    title: "Sunway University President’s Award",
+    event: "Foundation in Science & Technology Graduation",
+    issuer: "Sunway College Kuala Lumpur / Sunway University",
+    year: "2023",
+    category: "academic",
+    badge: "Valedictorian / Highest Scorer",
+    description: "Awarded the Sunway University President's Award presented to the highest scoring graduating student across the entire Foundation in Science and Technology (FIST) cohort, graduating with a perfect CGPA of 4.00/4.00.",
+    images: [
+      { path: "./FIST Presidents Award.jpg", label: "President's Award Certificate" }
+    ]
+  },
+  {
+    id: "award-spm-top-achiever",
+    title: "SPM Top Achiever Award (10 As)",
+    event: "National Sijil Pelajaran Malaysia Cohort Recognition",
+    issuer: "SMK Yong Peng & Ministry of Education Malaysia",
+    year: "2022",
+    category: "academic",
+    badge: "National Cohort Top Achiever",
+    description: "Conferred the Top Achiever Award for exceptional academic standing in the SPM national examinations, achieving 10 As (5 A+, 2 A, 3 A-) across Computer Science, Advanced Mathematics, Physics, Chemistry, and core sciences.",
+    images: [
+      { path: "./SPM Certificate.jpg", label: "SPM Results Certificate" },
+      { path: "./spm sijil.png", label: "Official SPM Sijil" }
     ]
   }
 ];

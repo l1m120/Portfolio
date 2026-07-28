@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Navbar from './components/Navbar';
 import HomeTab from './components/HomeTab';
 import AboutTab from './components/AboutTab';
+import HonorsTab from './components/HonorsTab';
 import ResearchTab from './components/ResearchTab';
 import ProductsTab from './components/ProductsTab';
 import ExperienceTab from './components/ExperienceTab';
@@ -11,7 +12,7 @@ import { personalInfo } from './data';
 import { motion, AnimatePresence } from 'motion/react';
 import { Mail, Phone, MapPin, Github, Linkedin, Cpu } from 'lucide-react';
 
-type TabId = 'home' | 'about' | 'research' | 'products' | 'experience' | 'contact';
+type TabId = 'home' | 'about' | 'honors' | 'research' | 'products' | 'experience' | 'contact';
 
 export default function App() {
   // Tab selector state
@@ -64,8 +65,11 @@ export default function App() {
               {activeTab === 'about' && (
                 <AboutTab onOpenLightbox={handleOpenLightbox} />
               )}
+              {activeTab === 'honors' && (
+                <HonorsTab onOpenLightbox={handleOpenLightbox} />
+              )}
               {activeTab === 'research' && (
-                <ResearchTab onOpenLightbox={handleOpenLightbox} />
+                <ResearchTab onOpenLightbox={handleOpenLightbox} setActiveTab={setActiveTab} />
               )}
               {activeTab === 'products' && (
                 <ProductsTab />
@@ -122,6 +126,14 @@ export default function App() {
                       className="hover:text-accent transition-colors cursor-pointer"
                     >
                       About
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => { setActiveTab('honors'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                      className="hover:text-accent transition-colors cursor-pointer"
+                    >
+                      Honors
                     </button>
                   </li>
                   <li>
