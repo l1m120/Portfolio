@@ -214,6 +214,21 @@ export const educationHistory: EducationItem[] = [
 
 export const honorsAwards: AwardItem[] = [
   {
+    id: "award-convocation-2026",
+    title: "Tan Sri Sir Jeffrey Cheah Scholastic Award & Lancaster University Chancellor Medal",
+    event: "Sunway University & Lancaster University Convocation 2026",
+    issuer: "Sunway University & Lancaster University (UK)",
+    year: "July 2026",
+    category: "academic",
+    badge: "Top Honors / Ranked #1",
+    description: "Swept top graduation honors across both degree bodies at Convocation 2026: awarded the Tan Sri Sir Jeffrey Cheah Scholastic Award for ranking 1st among the Computer Science cohort, alongside the prestigious Lancaster University Chancellor Medal for ranking 1st across the entire Faculty of Engineering and Technology.",
+    images: [
+      { path: "pending-stage", label: "Stage Photo Pending" },
+      { path: "pending-medal", label: "Medal Close-up Pending" },
+      { path: "pending-cert", label: "Certificate Pending" }
+    ]
+  },
+  {
     id: "award-wren",
     title: "Best Presentation Award",
     event: "Women Research Engineers Network (WREN) Symposium 2025",
@@ -242,6 +257,19 @@ export const honorsAwards: AwardItem[] = [
     ]
   },
   {
+    id: "award-deans-list",
+    title: "Dean's List Award (5 Consecutive Semesters)",
+    event: "School of Engineering & Technology Academic Excellence",
+    issuer: "Sunway University",
+    year: "2024 – 2025",
+    category: "academic",
+    badge: "Academic Excellence",
+    description: "Consistently recognized on the Dean's List for 5 consecutive semesters in the Bachelor of Science (Honours) in Computer Science program for maintaining exemplary academic performance with a CGPA of 3.98/4.00.",
+    images: [
+      { path: "./DeanList-Apr2025.pdf.jpg", label: "Dean's List Certificate (Latest)" }
+    ]
+  },
+  {
     id: "award-jcf-scholarship",
     title: "Jeffrey Cheah Foundation (JCF) Scholarship",
     event: "Scholarship Award Ceremony 2023",
@@ -253,19 +281,6 @@ export const honorsAwards: AwardItem[] = [
     images: [
       { path: "./JCF ind.jpeg", label: "Jeffrey Cheah Scholarship Presentation" },
       { path: "./JCF grp.jpg", label: "Jeffrey Cheah Scholarship Presentation" }
-    ]
-  },
-  {
-    id: "award-deans-list",
-    title: "Dean's List Award (5 Consecutive Semesters)",
-    event: "School of Engineering & Technology Academic Excellence",
-    issuer: "Sunway University",
-    year: "2024 – 2025",
-    category: "academic",
-    badge: "Academic Excellence",
-    description: "Consistently recognized on the Dean's List for 5 consecutive semesters in the Bachelor of Science (Honours) in Computer Science program for maintaining exemplary academic performance with a CGPA of 3.98/4.00.",
-    images: [
-      { path: "./DeanList-Apr2025.pdf.jpg", label: "Dean's List Certificate (Latest)" }
     ]
   },
   {
