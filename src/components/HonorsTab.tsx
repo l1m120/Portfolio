@@ -469,7 +469,7 @@ export default function HonorsTab({ onOpenLightbox }: HonorsTabProps) {
                             <span>Honor #1 — Computer Science Cohort</span>
                           </div>
                           <h3 className="font-extrabold text-slate-900 text-base">
-                            Tan Sri Sir Jeffrey Cheah Scholastic Award
+                            Tan Sri Dato' Seri Dr Jeffrey Cheah Scholastic Award
                           </h3>
                           <p className="text-xs text-slate-600 leading-relaxed">
                             Ranked <strong className="text-slate-900 font-extrabold">1st</strong> among the entire Computer Science graduating cohort for achieving top academic standing.
@@ -482,7 +482,7 @@ export default function HonorsTab({ onOpenLightbox }: HonorsTabProps) {
                             <span>Honor #2 — Faculty Wide (UK Dual Degree)</span>
                           </div>
                           <h3 className="font-extrabold text-slate-900 text-base">
-                            Lancaster University Chancellor Medal
+                            Lancaster University Chancellor's Medal
                           </h3>
                           <p className="text-xs text-slate-600 leading-relaxed">
                             Ranked <strong className="text-slate-900 font-extrabold">1st</strong> across the entire Faculty of Engineering and Technology, conferred by Lancaster University (UK).
