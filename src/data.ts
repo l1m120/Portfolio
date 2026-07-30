@@ -217,15 +217,16 @@ export const honorsAwards: AwardItem[] = [
     id: "award-convocation-2026",
     title: "Tan Sri Dato' Seri Dr Jeffrey Cheah Scholastic Award & Lancaster University Chancellor's Medal",
     event: "30th Sunway University Convocation Ceremony 2026",
-    issuer: "Sunway University & Lancaster University (UK)",
+    issuer: "Sunway University & Lancaster University, UK",
     year: "July 2026",
     category: "academic",
     badge: "Top Honors / Ranked #1",
     description: "Swept top graduation honors across both degree bodies at Convocation 2026: awarded the Tan Sri Dato' Seri Dr Jeffrey Cheah Scholastic Award for ranking 1st among the BSc (Hons) in Computer Science cohort, alongside the prestigious Lancaster University Chancellor's Medal for ranking 1st across the entire Faculty of Engineering and Technology (FET).",
     images: [
-      { path: "pending-stage", label: "Stage Photo Pending" },
-      { path: "pending-medal", label: "Medal Close-up Pending" },
-      { path: "pending-cert", label: "Certificate Pending" }
+      { path: "pending-scholastic-stage", label: "Scholastic Award Stage Photo" },
+      { path: "pending-medal-stage", label: "Chancellor's Medal Stage Photo" },
+      { path: "./medal_closeup.jpeg", label: "Lancaster University Chancellor's Medal Close-up" },
+      { path: "./scholastic_cert.jpeg", label: "Tan Sri Dato' Seri Dr Jeffrey Cheah Scholastic Award Certificate" }
     ]
   },
   {
@@ -266,7 +267,11 @@ export const honorsAwards: AwardItem[] = [
     badge: "Academic Excellence",
     description: "Consistently recognized on the Dean's List for 5 consecutive semesters in the Bachelor of Science (Honours) in Computer Science program for maintaining exemplary academic performance with a CGPA of 3.98/4.00.",
     images: [
-      { path: "./DeanList-Apr2025.pdf.jpg", label: "Dean's List Certificate (Latest)" }
+      { path: "./DeanList-Apr2024.pdf.jpg", label: "Dean's List Certificate — Semester 4 (Apr 2024)" },
+      { path: "./DeanList-Sept2024.pdf.jpg", label: "Dean's List Certificate — Semester 5 (Sept 2024)" },
+      { path: "./DeanList-Feb2025.pdf.jpg", label: "Dean's List Certificate — Semester 6 (Feb 2025)" },
+      { path: "./DeanList-Apr2025.pdf.jpg", label: "Dean's List Certificate — Semester 7 (Apr 2025)" },
+      { path: "./DeanList-Sept2025.pdf.jpg", label: "Dean's List Certificate — Semester 8 (Sept 2025)" }
     ]
   },
   {
@@ -279,8 +284,9 @@ export const honorsAwards: AwardItem[] = [
     badge: "100% Tuition Waiver",
     description: "Awarded the highly prestigious, fully-funded Jeffrey Cheah Foundation Scholarship (100% Tuition Fee Waiver) for pursuing a Bachelor of Science (Honours) in Computer Science at Sunway University. Selected based on outstanding academic excellence, leadership caliber, and potential to drive innovative technological advancements.",
     images: [
-      { path: "./JCF ind.jpeg", label: "Jeffrey Cheah Scholarship Presentation" },
-      { path: "./JCF grp.jpg", label: "Jeffrey Cheah Scholarship Presentation" }
+      { path: "./JCF cert.jpg", label: "Jeffrey Cheah Foundation Scholarship Certificate" },
+      { path: "./JCF ind.jpeg", label: "Jeffrey Cheah Scholarship Presentation (Individual)" },
+      { path: "./JCF grp.jpg", label: "Jeffrey Cheah Scholarship Presentation (Group)" }
     ]
   },
   {

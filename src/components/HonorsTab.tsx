@@ -114,6 +114,203 @@ function WrenWinnerSlideshow({ onOpenLightbox, awardTitle }: { onOpenLightbox: (
   );
 }
 
+function DeansListSlideshow({
+  onOpenLightbox,
+  awardTitle,
+  images
+}: {
+  onOpenLightbox: (src: string, alt: string) => void;
+  awardTitle: string;
+  images: { path: string; label: string }[];
+}) {
+  const [slideIdx, setSlideIdx] = useState(0);
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setSlideIdx((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setSlideIdx((prev) => (prev + 1) % images.length);
+  };
+
+  const activeSlide = images[slideIdx] || images[0];
+
+  return (
+    <div className="w-full max-w-2xl mx-auto space-y-3">
+      {/* Semester Selector Tabs */}
+      <div className="flex flex-wrap items-center justify-center gap-1.5 p-1.5 bg-slate-100/90 rounded-xl border border-slate-200/60">
+        {images.map((img, idx) => {
+          const semName = img.label.split('—')[1]?.trim() || `Sem ${idx + 4}`;
+          return (
+            <button
+              key={idx}
+              onClick={() => setSlideIdx(idx)}
+              className={`px-2.5 py-1 text-xs font-bold rounded-lg transition-all cursor-pointer ${
+                idx === slideIdx
+                  ? 'bg-slate-900 text-white shadow-xs'
+                  : 'text-slate-600 hover:bg-slate-200 hover:text-slate-900'
+              }`}
+            >
+              {semName}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Certificate Showcase Card */}
+      <div
+        onClick={() => onOpenLightbox(activeSlide.path, `${awardTitle} - ${activeSlide.label}`)}
+        className="group relative overflow-hidden rounded-xl border border-slate-200/80 bg-slate-50 p-2 shadow-xs hover:shadow-md transition-all duration-300 hover:scale-[1.01] cursor-zoom-in"
+        title="Click to zoom in"
+      >
+        <div className="aspect-[4/3] w-full overflow-hidden rounded-lg bg-white relative flex items-center justify-center select-none">
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={slideIdx}
+              src={activeSlide.path}
+              alt={activeSlide.label}
+              referrerPolicy="no-referrer"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="h-full w-full object-contain"
+              onError={(e) => {
+                e.currentTarget.src = `https://picsum.photos/seed/deans-list-${slideIdx}/600/450`;
+              }}
+            />
+          </AnimatePresence>
+
+          <div className="absolute top-3 right-3 rounded-full bg-black/60 backdrop-blur-md p-1.5 text-white opacity-0 group-hover:opacity-100 transition-opacity z-10">
+            <ZoomIn className="h-4 w-4" />
+          </div>
+
+          <button
+            onClick={handlePrev}
+            className="absolute left-3 p-1.5 rounded-full bg-black/50 hover:bg-black/75 text-white hover:scale-105 active:scale-95 transition-all z-10 cursor-pointer border-0"
+            title="Previous Certificate"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </button>
+          <button
+            onClick={handleNext}
+            className="absolute right-3 p-1.5 rounded-full bg-black/50 hover:bg-black/75 text-white hover:scale-105 active:scale-95 transition-all z-10 cursor-pointer border-0"
+            title="Next Certificate"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </button>
+        </div>
+
+        <div className="mt-3 flex items-center justify-between text-xs px-1">
+          <span className="font-bold text-slate-800 leading-none">{activeSlide.label}</span>
+          <span className="text-[10px] font-mono font-bold text-slate-400">
+            {activeSlide.path.split('/').pop()?.toUpperCase() || 'DOCUMENT.JPG'}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function JcfScholarshipSlideshow({
+  onOpenLightbox,
+  awardTitle,
+  images
+}: {
+  onOpenLightbox: (src: string, alt: string) => void;
+  awardTitle: string;
+  images: { path: string; label: string }[];
+}) {
+  const [slideIdx, setSlideIdx] = useState(0);
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setSlideIdx((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setSlideIdx((prev) => (prev + 1) % images.length);
+  };
+
+  const activeSlide = images[slideIdx] || images[0];
+
+  return (
+    <div className="w-full max-w-2xl mx-auto space-y-3">
+      {/* Tab Selector Buttons */}
+      <div className="flex flex-wrap items-center justify-center gap-1.5 p-1.5 bg-slate-100/90 rounded-xl border border-slate-200/60">
+        {images.map((img, idx) => (
+          <button
+            key={idx}
+            onClick={() => setSlideIdx(idx)}
+            className={`px-3 py-1 text-xs font-bold rounded-lg transition-all cursor-pointer ${
+              idx === slideIdx
+                ? 'bg-slate-900 text-white shadow-xs'
+                : 'text-slate-600 hover:bg-slate-200 hover:text-slate-900'
+            }`}
+          >
+            {idx === 0 ? 'Scholarship Certificate' : idx === 1 ? 'Individual Presentation' : 'Group Presentation'}
+          </button>
+        ))}
+      </div>
+
+      {/* Main Display Frame */}
+      <div
+        onClick={() => onOpenLightbox(activeSlide.path, `${awardTitle} - ${activeSlide.label}`)}
+        className="group relative overflow-hidden rounded-xl border border-slate-200/80 bg-slate-50 p-2 shadow-xs hover:shadow-md transition-all duration-300 hover:scale-[1.01] cursor-zoom-in"
+        title="Click to zoom in"
+      >
+        <div className="aspect-[4/3] w-full overflow-hidden rounded-lg bg-white relative flex items-center justify-center select-none">
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={slideIdx}
+              src={activeSlide.path}
+              alt={activeSlide.label}
+              referrerPolicy="no-referrer"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="h-full w-full object-contain"
+              onError={(e) => {
+                e.currentTarget.src = `https://picsum.photos/seed/jcf-award-${slideIdx}/600/450`;
+              }}
+            />
+          </AnimatePresence>
+
+          <div className="absolute top-3 right-3 rounded-full bg-black/60 backdrop-blur-md p-1.5 text-white opacity-0 group-hover:opacity-100 transition-opacity z-10">
+            <ZoomIn className="h-4 w-4" />
+          </div>
+
+          <button
+            onClick={handlePrev}
+            className="absolute left-3 p-1.5 rounded-full bg-black/50 hover:bg-black/75 text-white hover:scale-105 active:scale-95 transition-all z-10 cursor-pointer border-0"
+            title="Previous item"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </button>
+          <button
+            onClick={handleNext}
+            className="absolute right-3 p-1.5 rounded-full bg-black/50 hover:bg-black/75 text-white hover:scale-105 active:scale-95 transition-all z-10 cursor-pointer border-0"
+            title="Next item"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </button>
+        </div>
+
+        <div className="mt-3 flex items-center justify-between text-xs px-1">
+          <span className="font-bold text-slate-800 leading-none">{activeSlide.label}</span>
+          <span className="text-[10px] font-mono font-bold text-slate-400">
+            {activeSlide.path.split('/').pop()?.toUpperCase() || 'DOCUMENT.JPG'}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function JkrCollaborationSlideshow({ onOpenLightbox, awardTitle, images }: { onOpenLightbox: (src: string, alt: string) => void; awardTitle: string; images: { path: string; label: string }[] }) {
   const [slideIdx, setSlideIdx] = useState(0);
 
@@ -485,66 +682,102 @@ export default function HonorsTab({ onOpenLightbox }: HonorsTabProps) {
                             Lancaster University Chancellor's Medal
                           </h3>
                           <p className="text-xs text-slate-600 leading-relaxed">
-                            Ranked <strong className="text-slate-900 font-extrabold">1st</strong> across the entire Faculty of Engineering and Technology, conferred by Lancaster University (UK).
+                            Ranked <strong className="text-slate-900 font-extrabold">1st</strong> across the entire Faculty of Engineering and Technology, conferred by Lancaster University, UK.
                           </p>
                         </div>
                       </div>
 
-                      {/* Requirement 3: Grid of 3 Image Placeholders for Convocation July 2026 */}
+                      {/* Grid of 4 Image Items in 2x2 layout for Convocation July 2026 */}
                       <div className="space-y-3 pt-2">
                         <div className="flex items-center justify-between text-xs font-semibold text-slate-500">
                           <span className="flex items-center gap-1.5 text-amber-900 font-bold">
                             <Camera className="h-3.5 w-3.5 text-amber-600" />
                             Official Convocation Media & Document Proofs
                           </span>
-                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-slate-200/80 text-slate-600">
-                            <Clock className="h-3 w-3" /> July 2026 Release
-                          </span>
                         </div>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                          {/* Placeholder 1: Stage Photo Pending */}
-                          <div className="relative flex flex-col items-center justify-center text-center rounded-xl border-2 border-dashed border-slate-300/90 bg-slate-100/70 hover:bg-slate-100 p-6 transition-all duration-300 min-h-[160px] group">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          {/* Placeholder 1: Scholastic Award Stage Photo Pending */}
+                          <div className="relative flex flex-col items-center justify-center text-center rounded-xl border-2 border-dashed border-slate-300/90 bg-slate-100/70 hover:bg-slate-100 p-6 transition-all duration-300 min-h-[180px] group">
                             <div className="p-3 rounded-full bg-slate-200 text-slate-500 group-hover:scale-110 group-hover:bg-amber-100 group-hover:text-amber-700 transition-all duration-300 mb-2">
                               <Camera className="h-6 w-6" />
                             </div>
                             <span className="text-xs font-black text-slate-800 tracking-tight">
-                              Stage Photo Pending
+                              Scholastic Award Stage Photo
                             </span>
                             <span className="text-[10px] text-slate-400 font-mono mt-1">
-                              STAGE_PHOTO_2026.JPG
+                              STAGE_SCHOLASTIC_2026.JPG
                             </span>
                           </div>
 
-                          {/* Placeholder 2: Medal Close-up Pending */}
-                          <div className="relative flex flex-col items-center justify-center text-center rounded-xl border-2 border-dashed border-slate-300/90 bg-slate-100/70 hover:bg-slate-100 p-6 transition-all duration-300 min-h-[160px] group">
+                          {/* Placeholder 2: Chancellor's Medal Stage Photo Pending */}
+                          <div className="relative flex flex-col items-center justify-center text-center rounded-xl border-2 border-dashed border-slate-300/90 bg-slate-100/70 hover:bg-slate-100 p-6 transition-all duration-300 min-h-[180px] group">
                             <div className="p-3 rounded-full bg-slate-200 text-slate-500 group-hover:scale-110 group-hover:bg-amber-100 group-hover:text-amber-700 transition-all duration-300 mb-2">
-                              <Medal className="h-6 w-6" />
+                              <Camera className="h-6 w-6" />
                             </div>
                             <span className="text-xs font-black text-slate-800 tracking-tight">
-                              Medal Close-up Pending
+                              Chancellor's Medal Stage Photo
                             </span>
                             <span className="text-[10px] text-slate-400 font-mono mt-1">
-                              MEDAL_CLOSEUP_2026.JPG
+                              STAGE_MEDAL_2026.JPG
                             </span>
                           </div>
 
-                          {/* Placeholder 3: Certificate Pending */}
-                          <div className="relative flex flex-col items-center justify-center text-center rounded-xl border-2 border-dashed border-slate-300/90 bg-slate-100/70 hover:bg-slate-100 p-6 transition-all duration-300 min-h-[160px] group">
-                            <div className="p-3 rounded-full bg-slate-200 text-slate-500 group-hover:scale-110 group-hover:bg-amber-100 group-hover:text-amber-700 transition-all duration-300 mb-2">
-                              <FileCheck className="h-6 w-6" />
+                          {/* Image 3: Lancaster Medal Close-up */}
+                          <div
+                            onClick={() => onOpenLightbox('./medal_closeup.jpeg', "Lancaster University Chancellor's Medal Close-up")}
+                            className="group relative overflow-hidden rounded-xl border border-slate-200/80 bg-slate-50 p-2 shadow-xs hover:shadow-md transition-all duration-300 hover:scale-[1.01] cursor-zoom-in"
+                            title="Click to zoom in"
+                          >
+                            <div className="aspect-[4/3] w-full overflow-hidden rounded-lg bg-white relative flex items-center justify-center">
+                              <img
+                                src="./medal_closeup.jpeg"
+                                alt="Lancaster University Chancellor's Medal Close-up"
+                                referrerPolicy="no-referrer"
+                                className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-[1.01]"
+                                onError={(e) => {
+                                  e.currentTarget.src = 'https://picsum.photos/seed/medal-closeup/600/450';
+                                }}
+                              />
+                              <div className="absolute top-3 right-3 rounded-full bg-black/60 backdrop-blur-md p-1.5 text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                                <ZoomIn className="h-4 w-4" />
+                              </div>
                             </div>
-                            <span className="text-xs font-black text-slate-800 tracking-tight">
-                              Certificate Pending
-                            </span>
-                            <span className="text-[10px] text-slate-400 font-mono mt-1">
-                              SCHOLASTIC_CERT_2026.PDF
-                            </span>
+                            <div className="mt-3 flex items-center justify-between text-xs px-1">
+                              <span className="font-bold text-slate-800 leading-none">Lancaster Medal Close-up</span>
+                              <span className="text-[10px] font-mono font-bold text-slate-400">MEDAL_CLOSEUP.JPEG</span>
+                            </div>
+                          </div>
+
+                          {/* Image 4: Scholastic Award Certificate */}
+                          <div
+                            onClick={() => onOpenLightbox('./scholastic_cert.jpeg', "Tan Sri Dato' Seri Dr Jeffrey Cheah Scholastic Award Certificate")}
+                            className="group relative overflow-hidden rounded-xl border border-slate-200/80 bg-slate-50 p-2 shadow-xs hover:shadow-md transition-all duration-300 hover:scale-[1.01] cursor-zoom-in"
+                            title="Click to zoom in"
+                          >
+                            <div className="aspect-[4/3] w-full overflow-hidden rounded-lg bg-white relative flex items-center justify-center">
+                              <img
+                                src="./scholastic_cert.jpeg"
+                                alt="Tan Sri Dato' Seri Dr Jeffrey Cheah Scholastic Award Certificate"
+                                referrerPolicy="no-referrer"
+                                className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-[1.01]"
+                                onError={(e) => {
+                                  e.currentTarget.src = 'https://picsum.photos/seed/scholastic-cert/600/450';
+                                }}
+                              />
+                              <div className="absolute top-3 right-3 rounded-full bg-black/60 backdrop-blur-md p-1.5 text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                                <ZoomIn className="h-4 w-4" />
+                              </div>
+                            </div>
+                            <div className="mt-3 flex items-center justify-between text-xs px-1">
+                              <span className="font-bold text-slate-800 leading-none">Scholastic Award Certificate</span>
+                              <span className="text-[10px] font-mono font-bold text-slate-400">SCHOLASTIC_CERT.JPEG</span>
+                            </div>
                           </div>
                         </div>
 
-                        <p className="text-[11px] text-slate-400 text-center font-medium italic">
-                          Official graduation photography and physical certificate scans will be uploaded following the July 2026 convocation ceremony.
+                        <p className="text-[11px] text-slate-400 text-center font-medium">
+                           Click any certificate or photo above to view full-size high-resolution document.
                         </p>
                       </div>
                     </div>
@@ -580,10 +813,26 @@ export default function HonorsTab({ onOpenLightbox }: HonorsTabProps) {
                       <div
                         id={`${award.id}-gallery-grid`}
                         className={`grid grid-cols-1 ${
-                          (award.images.length > 1 && award.id !== 'award-jkr-collaboration') || award.id === 'award-wren' ? 'md:grid-cols-2' : 'max-w-xl mx-auto'
+                          award.id === 'award-deans-list' || award.id === 'award-jcf-scholarship' || award.id === 'award-jkr-collaboration'
+                            ? 'max-w-2xl mx-auto'
+                            : (award.images.length > 1 && award.id !== 'award-jkr-collaboration') || award.id === 'award-wren'
+                            ? 'md:grid-cols-2'
+                            : 'max-w-xl mx-auto'
                         } gap-6`}
                       >
-                        {award.id === 'award-jkr-collaboration' ? (
+                        {award.id === 'award-deans-list' ? (
+                          <DeansListSlideshow
+                            onOpenLightbox={onOpenLightbox}
+                            awardTitle={award.title}
+                            images={award.images}
+                          />
+                        ) : award.id === 'award-jcf-scholarship' ? (
+                          <JcfScholarshipSlideshow
+                            onOpenLightbox={onOpenLightbox}
+                            awardTitle={award.title}
+                            images={award.images}
+                          />
+                        ) : award.id === 'award-jkr-collaboration' ? (
                           <JkrCollaborationSlideshow
                             onOpenLightbox={onOpenLightbox}
                             awardTitle={award.title}
