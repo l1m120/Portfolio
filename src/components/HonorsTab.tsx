@@ -214,103 +214,6 @@ function DeansListSlideshow({
   );
 }
 
-function JcfScholarshipSlideshow({
-  onOpenLightbox,
-  awardTitle,
-  images
-}: {
-  onOpenLightbox: (src: string, alt: string) => void;
-  awardTitle: string;
-  images: { path: string; label: string }[];
-}) {
-  const [slideIdx, setSlideIdx] = useState(0);
-
-  const handlePrev = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setSlideIdx((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-  };
-
-  const handleNext = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setSlideIdx((prev) => (prev + 1) % images.length);
-  };
-
-  const activeSlide = images[slideIdx] || images[0];
-
-  return (
-    <div className="w-full max-w-2xl mx-auto space-y-3">
-      {/* Tab Selector Buttons */}
-      <div className="flex flex-wrap items-center justify-center gap-1.5 p-1.5 bg-slate-100/90 rounded-xl border border-slate-200/60">
-        {images.map((img, idx) => (
-          <button
-            key={idx}
-            onClick={() => setSlideIdx(idx)}
-            className={`px-3 py-1 text-xs font-bold rounded-lg transition-all cursor-pointer ${
-              idx === slideIdx
-                ? 'bg-slate-900 text-white shadow-xs'
-                : 'text-slate-600 hover:bg-slate-200 hover:text-slate-900'
-            }`}
-          >
-            {idx === 0 ? 'Scholarship Certificate' : idx === 1 ? 'Individual Presentation' : 'Group Presentation'}
-          </button>
-        ))}
-      </div>
-
-      {/* Main Display Frame */}
-      <div
-        onClick={() => onOpenLightbox(activeSlide.path, `${awardTitle} - ${activeSlide.label}`)}
-        className="group relative overflow-hidden rounded-xl border border-slate-200/80 bg-slate-50 p-2 shadow-xs hover:shadow-md transition-all duration-300 hover:scale-[1.01] cursor-zoom-in"
-        title="Click to zoom in"
-      >
-        <div className="aspect-[4/3] w-full overflow-hidden rounded-lg bg-white relative flex items-center justify-center select-none">
-          <AnimatePresence mode="wait">
-            <motion.img
-              key={slideIdx}
-              src={activeSlide.path}
-              alt={activeSlide.label}
-              referrerPolicy="no-referrer"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="h-full w-full object-contain"
-              onError={(e) => {
-                e.currentTarget.src = `https://picsum.photos/seed/jcf-award-${slideIdx}/600/450`;
-              }}
-            />
-          </AnimatePresence>
-
-          <div className="absolute top-3 right-3 rounded-full bg-black/60 backdrop-blur-md p-1.5 text-white opacity-0 group-hover:opacity-100 transition-opacity z-10">
-            <ZoomIn className="h-4 w-4" />
-          </div>
-
-          <button
-            onClick={handlePrev}
-            className="absolute left-3 p-1.5 rounded-full bg-black/50 hover:bg-black/75 text-white hover:scale-105 active:scale-95 transition-all z-10 cursor-pointer border-0"
-            title="Previous item"
-          >
-            <ChevronLeft className="h-4 w-4" />
-          </button>
-          <button
-            onClick={handleNext}
-            className="absolute right-3 p-1.5 rounded-full bg-black/50 hover:bg-black/75 text-white hover:scale-105 active:scale-95 transition-all z-10 cursor-pointer border-0"
-            title="Next item"
-          >
-            <ChevronRight className="h-4 w-4" />
-          </button>
-        </div>
-
-        <div className="mt-3 flex items-center justify-between text-xs px-1">
-          <span className="font-bold text-slate-800 leading-none">{activeSlide.label}</span>
-          <span className="text-[10px] font-mono font-bold text-slate-400">
-            {activeSlide.path.split('/').pop()?.toUpperCase() || 'DOCUMENT.JPG'}
-          </span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function JkrCollaborationSlideshow({ onOpenLightbox, awardTitle, images }: { onOpenLightbox: (src: string, alt: string) => void; awardTitle: string; images: { path: string; label: string }[] }) {
   const [slideIdx, setSlideIdx] = useState(0);
 
@@ -744,7 +647,7 @@ export default function HonorsTab({ onOpenLightbox }: HonorsTabProps) {
                               </div>
                             </div>
                             <div className="mt-3 flex items-center justify-between text-xs px-1">
-                              <span className="font-bold text-slate-800 leading-none">Lancaster Medal Close-up</span>
+                              <span className="font-bold text-slate-800 leading-none">LU Chancellor's Medal Close-up</span>
                               <span className="text-[10px] font-mono font-bold text-slate-400">MEDAL_CLOSEUP.JPEG</span>
                             </div>
                           </div>
@@ -827,11 +730,37 @@ export default function HonorsTab({ onOpenLightbox }: HonorsTabProps) {
                             images={award.images}
                           />
                         ) : award.id === 'award-jcf-scholarship' ? (
-                          <JcfScholarshipSlideshow
-                            onOpenLightbox={onOpenLightbox}
-                            awardTitle={award.title}
-                            images={award.images}
-                          />
+                          <div className="col-span-full grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            {award.images.map((img, idx) => (
+                              <div
+                                key={idx}
+                                onClick={() => onOpenLightbox(img.path, `${award.title} - ${img.label}`)}
+                                className="group relative overflow-hidden rounded-xl border border-slate-200/80 bg-slate-50 p-2 shadow-xs hover:shadow-md transition-all duration-300 hover:scale-[1.01] cursor-zoom-in"
+                                title="Click to zoom in"
+                              >
+                                <div className="aspect-[4/3] w-full overflow-hidden rounded-lg bg-white relative flex items-center justify-center">
+                                  <img
+                                    src={img.path}
+                                    alt={img.label}
+                                    referrerPolicy="no-referrer"
+                                    className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-[1.01]"
+                                    onError={(e) => {
+                                      e.currentTarget.src = `https://picsum.photos/seed/jcf-${idx}/600/450`;
+                                    }}
+                                  />
+                                  <div className="absolute top-3 right-3 rounded-full bg-black/60 backdrop-blur-md p-1.5 text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <ZoomIn className="h-4 w-4" />
+                                  </div>
+                                </div>
+                                <div className="mt-3 flex items-center justify-between text-xs px-1">
+                                  <span className="font-bold text-slate-800 leading-none">{img.label}</span>
+                                  <span className="text-[10px] font-mono font-bold text-slate-400">
+                                    {img.path.split('/').pop()?.toUpperCase() || 'DOCUMENT.JPG'}
+                                  </span>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
                         ) : award.id === 'award-jkr-collaboration' ? (
                           <JkrCollaborationSlideshow
                             onOpenLightbox={onOpenLightbox}
