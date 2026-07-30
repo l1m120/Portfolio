@@ -472,7 +472,7 @@ export default function HonorsTab({ onOpenLightbox }: HonorsTabProps) {
                             Tan Sri Dato' Seri Dr Jeffrey Cheah Scholastic Award
                           </h3>
                           <p className="text-xs text-slate-600 leading-relaxed">
-                            Ranked <strong className="text-slate-900 font-extrabold">1st</strong> among the entire Computer Science graduating cohort for achieving top academic standing.
+                            Ranked <strong className="text-slate-900 font-extrabold">1st</strong> among the entire BSc (Hons) in Computer Science graduating cohort for achieving top academic standing.
                           </p>
                         </div>
 
