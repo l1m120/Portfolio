@@ -410,7 +410,7 @@ export default function HonorsTab({ onOpenLightbox }: HonorsTabProps) {
             </div>
             <div>
               <div className="text-2xl font-black text-slate-900">4.00 / 4.00</div>
-              <div className="text-xs font-semibold text-slate-500">Valedictorian FIST</div>
+              <div className="text-xs font-semibold text-slate-500">Top among FIST</div>
             </div>
           </div>
         </div>
@@ -716,7 +716,7 @@ export default function HonorsTab({ onOpenLightbox }: HonorsTabProps) {
                       <div
                         id={`${award.id}-gallery-grid`}
                         className={`grid grid-cols-1 ${
-                          award.id === 'award-deans-list' || award.id === 'award-jcf-scholarship' || award.id === 'award-jkr-collaboration'
+                          award.id === 'award-deans-list' || award.id === 'award-jkr-collaboration'
                             ? 'max-w-2xl mx-auto'
                             : (award.images.length > 1 && award.id !== 'award-jkr-collaboration') || award.id === 'award-wren'
                             ? 'md:grid-cols-2'
@@ -730,33 +730,39 @@ export default function HonorsTab({ onOpenLightbox }: HonorsTabProps) {
                             images={award.images}
                           />
                         ) : award.id === 'award-jcf-scholarship' ? (
-                          <div className="col-span-full grid grid-cols-1 sm:grid-cols-3 gap-4">
+                          <div className="col-span-full grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
                             {award.images.map((img, idx) => (
                               <div
                                 key={idx}
-                                onClick={() => onOpenLightbox(img.path, `${award.title} - ${img.label}`)}
-                                className="group relative overflow-hidden rounded-xl border border-slate-200/80 bg-slate-50 p-2 shadow-xs hover:shadow-md transition-all duration-300 hover:scale-[1.01] cursor-zoom-in"
-                                title="Click to zoom in"
+                                className={idx === 2 ? 'sm:col-span-2 flex justify-center w-full' : 'w-full'}
                               >
-                                <div className="aspect-[4/3] w-full overflow-hidden rounded-lg bg-white relative flex items-center justify-center">
-                                  <img
-                                    src={img.path}
-                                    alt={img.label}
-                                    referrerPolicy="no-referrer"
-                                    className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-[1.01]"
-                                    onError={(e) => {
-                                      e.currentTarget.src = `https://picsum.photos/seed/jcf-${idx}/600/450`;
-                                    }}
-                                  />
-                                  <div className="absolute top-3 right-3 rounded-full bg-black/60 backdrop-blur-md p-1.5 text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <ZoomIn className="h-4 w-4" />
+                                <div
+                                  onClick={() => onOpenLightbox(img.path, `${award.title} - ${img.label}`)}
+                                  className={`group relative overflow-hidden rounded-xl border border-slate-200/80 bg-slate-50 p-2 shadow-xs hover:shadow-md transition-all duration-300 hover:scale-[1.01] cursor-zoom-in w-full ${
+                                    idx === 2 ? 'sm:w-[calc(50%-0.75rem)]' : ''
+                                  }`}
+                                  title="Click to zoom in"
+                                >
+                                  <div className="aspect-[4/3] w-full overflow-hidden rounded-lg bg-white relative flex items-center justify-center">
+                                    <img
+                                      src={img.path}
+                                      alt={img.label}
+                                      referrerPolicy="no-referrer"
+                                      className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-[1.01]"
+                                      onError={(e) => {
+                                        e.currentTarget.src = `https://picsum.photos/seed/jcf-${idx}/600/450`;
+                                      }}
+                                    />
+                                    <div className="absolute top-3 right-3 rounded-full bg-black/60 backdrop-blur-md p-1.5 text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                                      <ZoomIn className="h-4 w-4" />
+                                    </div>
                                   </div>
-                                </div>
-                                <div className="mt-3 flex items-center justify-between text-xs px-1">
-                                  <span className="font-bold text-slate-800 leading-none">{img.label}</span>
-                                  <span className="text-[10px] font-mono font-bold text-slate-400">
-                                    {img.path.split('/').pop()?.toUpperCase() || 'DOCUMENT.JPG'}
-                                  </span>
+                                  <div className="mt-3 flex items-center justify-between text-xs px-1">
+                                    <span className="font-bold text-slate-800 leading-none">{img.label}</span>
+                                    <span className="text-[10px] font-mono font-bold text-slate-400">
+                                      {img.path.split('/').pop()?.toUpperCase() || 'DOCUMENT.JPG'}
+                                    </span>
+                                  </div>
                                 </div>
                               </div>
                             ))}

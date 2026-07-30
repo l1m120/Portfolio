@@ -705,27 +705,11 @@ export default function AboutTab({ onOpenLightbox }: AboutTabProps) {
 }
 
 function EducationDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLightbox: (src: string, alt: string) => void; degreeTitle: string }) {
-  const [activeCategory, setActiveCategory] = useState<'transcript' | 'jcf' | 'deansList'>('transcript');
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const documents = {
-    transcript: ['./transcript_1.jpg', './transcript_2.jpg', './transcript_3.jpg'],
-    jcf: ['./JCF cert.jpg'],
-    deansList: [
-      './DeanList-Apr2024.pdf.jpg',
-      './DeanList-Sept2024.pdf.jpg',
-      './DeanList-Feb2025.pdf.jpg',
-      './DeanList-Apr2025.pdf.jpg',
-      './DeanList-Sept2025.pdf.jpg'
-    ]
-  };
+  const transcriptPages = ['./transcript_1.jpg', './transcript_2.jpg', './transcript_3.jpg'];
+  const activeImagePath = transcriptPages[currentIndex] || transcriptPages[0];
 
-  const activeCategoryList = documents[activeCategory];
-  const activeImagePath = activeCategoryList[currentIndex] || activeCategoryList[0] || '';
-  const isPdf = activeImagePath.toLowerCase().endsWith('.pdf');
-
-  // To be perfectly robust for the development build and lightbox,
-  // we can resolve the public/ asset prefix to root when loading/rendering
   const getRenderPath = (path: string) => {
     if (path.startsWith('/public/')) {
       return path.replace(/^\/public/, '');
@@ -734,18 +718,7 @@ function EducationDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLigh
   };
 
   const getLabel = () => {
-    switch (activeCategory) {
-      case 'transcript':
-        return activeCategoryList.length > 1
-          ? `Official Transcript (Page ${currentIndex + 1})`
-          : 'Official Transcript';
-      case 'jcf':
-        return 'JCF Scholarship Certificate';
-      case 'deansList':
-        return `Dean's List Certificate (Semester ${currentIndex + 4})`;
-      default:
-        return 'Education Document';
-    }
+    return `Official Transcript (Page ${currentIndex + 1} of ${transcriptPages.length})`;
   };
 
   const getFilenameForDisplay = () => {
@@ -755,56 +728,41 @@ function EducationDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLigh
 
   const handlePrev = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setCurrentIndex((prev) => (prev === 0 ? activeCategoryList.length - 1 : prev - 1));
+    setCurrentIndex((prev) => (prev === 0 ? transcriptPages.length - 1 : prev - 1));
   };
 
   const handleNext = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setCurrentIndex((prev) => (prev + 1) % activeCategoryList.length);
-  };
-
-  const selectCategory = (category: 'transcript' | 'jcf' | 'deansList') => {
-    setActiveCategory(category);
-    setCurrentIndex(0);
+    setCurrentIndex((prev) => (prev + 1) % transcriptPages.length);
   };
 
   return (
     <div className="lg:col-span-4 flex flex-col justify-start items-center w-full max-w-[340px] mx-auto space-y-4">
-      {/* The Image Frame - maintaining large, rounded container with subtle shadow */}
+      {/* The Image Frame */}
       <div
         onClick={() => onOpenLightbox(getRenderPath(activeImagePath), `${degreeTitle} - ${getLabel()}`)}
         className="group relative overflow-hidden rounded-xl border border-slate-200/85 bg-slate-50 p-1 cursor-zoom-in shadow-xs hover:shadow-md transition-shadow w-full aspect-[1/1.414]"
         title="Click to zoom certificate"
       >
         <div className="w-full h-full overflow-hidden rounded-lg bg-white relative flex items-center justify-center select-none animate-fade-in">
-          {isPdf ? (
-            <iframe
-              src={`${getRenderPath(activeImagePath)}#toolbar=0&navpanes=0`}
-              className="w-full h-full rounded-lg bg-white border-0"
-              title={getLabel()}
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={currentIndex}
+              src={getRenderPath(activeImagePath)}
+              alt={getLabel()}
+              referrerPolicy="no-referrer"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="h-full w-full object-contain"
+              onError={(e) => {
+                e.currentTarget.src = `https://picsum.photos/seed/transcript-doc-${currentIndex}/600/850`;
+              }}
             />
-          ) : (
-            <AnimatePresence mode="wait">
-              <motion.img
-                key={`${activeCategory}-${currentIndex}`}
-                src={getRenderPath(activeImagePath)}
-                alt={getLabel()}
-                referrerPolicy="no-referrer"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                className="h-full w-full object-contain"
-                onError={(e) => {
-                  // Highly robust fallback mechanism: use Picsum when local files do not exist yet (portrait dimension)
-                  const seed = activeCategory === 'transcript' ? `transcript-doc-${currentIndex}` : activeCategory === 'jcf' ? 'jcf-cert' : `deanslist-term-${currentIndex + 4}`;
-                  e.currentTarget.src = `https://picsum.photos/seed/${seed}/600/850`;
-                }}
-              />
-            </AnimatePresence>
-          )}
+          </AnimatePresence>
 
-          {/* Zoom Icon Overlay - Fully clickable button above iframe or image overlay */}
+          {/* Zoom Icon Overlay */}
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -816,82 +774,42 @@ function EducationDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLigh
             <ZoomIn className="h-4 w-4" />
           </button>
 
-          {/* Carousel Controls (arrows overlay for multi-image categories) */}
-          {activeCategoryList.length > 1 && (
+          {/* Carousel Controls */}
+          {transcriptPages.length > 1 && (
             <>
               <button
                 onClick={handlePrev}
                 className="absolute left-2 p-1 rounded-full bg-black/50 hover:bg-black/75 text-white text-opacity-90 hover:text-opacity-100 hover:scale-105 active:scale-95 transition-all z-10 cursor-pointer border-0"
-                title="Previous award"
+                title="Previous page"
               >
                 <ChevronLeft className="h-3.5 w-3.5" />
               </button>
               <button
                 onClick={handleNext}
                 className="absolute right-2 p-1 rounded-full bg-black/50 hover:bg-black/75 text-white text-opacity-90 hover:text-opacity-100 hover:scale-105 active:scale-95 transition-all z-10 cursor-pointer border-0"
-                title="Next award"
+                title="Next page"
               >
                 <ChevronRight className="h-3.5 w-3.5" />
               </button>
             </>
           )}
 
-          {/* Dot indicators overlay for multi-image categories */}
-          {activeCategoryList.length > 1 && (
+          {/* Dot indicators */}
+          {transcriptPages.length > 1 && (
             <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-black/50 backdrop-blur-md px-2 py-1 rounded-full z-10" onClick={(e) => e.stopPropagation()}>
-              {activeCategoryList.map((_, idx) => (
+              {transcriptPages.map((_, idx) => (
                 <button
                   key={idx}
                   onClick={() => setCurrentIndex(idx)}
                   className={`h-1.5 w-1.5 rounded-full transition-all duration-200 cursor-pointer border-0 ${
                     idx === currentIndex ? 'bg-white scale-110 px-1' : 'bg-white/40 hover:bg-white/80'
                   }`}
-                  title={
-                    activeCategory === 'deansList'
-                      ? `Show Semester ${idx + 4} Certificate`
-                      : activeCategory === 'transcript'
-                      ? `Show Page ${idx + 1}`
-                      : `Show Certificate ${idx + 1}`
-                  }
+                  title={`Show Page ${idx + 1}`}
                 />
               ))}
             </div>
           )}
         </div>
-      </div>
-
-      {/* The Category Switcher: small elegant pill-shaped buttons */}
-      <div className="flex w-full justify-between gap-1 p-1 bg-slate-100/80 border border-slate-200/50 rounded-lg">
-        <button
-          onClick={() => selectCategory('transcript')}
-          className={`flex-1 py-1 px-0.5 text-[11px] font-bold rounded-md transition-all cursor-pointer text-center ${
-            activeCategory === 'transcript'
-              ? 'bg-slate-900 text-white shadow-xs'
-              : 'text-slate-600 hover:bg-slate-200'
-          }`}
-        >
-          Transcript
-        </button>
-        <button
-          onClick={() => selectCategory('jcf')}
-          className={`flex-1 py-1 px-0.5 text-[11px] font-bold rounded-md transition-all cursor-pointer text-center ${
-            activeCategory === 'jcf'
-              ? 'bg-slate-900 text-white shadow-xs'
-              : 'text-slate-600 hover:bg-slate-200'
-          }`}
-        >
-          JCF Scholar
-        </button>
-        <button
-          onClick={() => selectCategory('deansList')}
-          className={`flex-1 py-1 px-0.5 text-[11px] font-bold rounded-md transition-all cursor-pointer text-center ${
-            activeCategory === 'deansList'
-              ? 'bg-slate-900 text-white shadow-xs'
-              : 'text-slate-600 hover:bg-slate-200'
-          }`}
-        >
-          Dean's List
-        </button>
       </div>
 
       {/* Label and Filename section */}
@@ -908,17 +826,8 @@ function EducationDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLigh
 }
 
 function FistDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLightbox: (src: string, alt: string) => void; degreeTitle: string }) {
-  const [activeCategory, setActiveCategory] = useState<'transcript' | 'presidentsAward'>('transcript');
+  const activeImagePath = './FIST Trancsript.jpg';
 
-  const documents = {
-    transcript: './FIST Trancsript.jpg',
-    presidentsAward: './FIST Presidents Award.jpg'
-  };
-
-  const activeImagePath = documents[activeCategory];
-
-  // To be perfectly robust for the development build and lightbox,
-  // we can resolve the public/ asset prefix to root when loading/rendering
   const getRenderPath = (path: string) => {
     if (path.startsWith('/public/')) {
       return path.replace(/^\/public/, '');
@@ -926,55 +835,33 @@ function FistDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLightbox:
     return path;
   };
 
-  const getLabel = () => {
-    switch (activeCategory) {
-      case 'transcript':
-        return 'Official Transcript';
-      case 'presidentsAward':
-        return "Sunway University President's Award Certificate";
-      default:
-        return 'Education Document';
-    }
-  };
+  const getLabel = () => 'Official Transcript (FIST)';
 
   const getFilenameForDisplay = () => {
     const filename = activeImagePath.split('/').pop() || '';
     return filename.toUpperCase();
   };
 
-  const selectCategory = (category: 'transcript' | 'presidentsAward') => {
-    setActiveCategory(category);
-  };
-
   return (
     <div className="lg:col-span-4 flex flex-col justify-start items-center w-full max-w-[340px] mx-auto space-y-4">
-      {/* The Image Frame - maintaining large, rounded container with subtle shadow */}
+      {/* The Image Frame */}
       <div
         onClick={() => onOpenLightbox(getRenderPath(activeImagePath), `${degreeTitle} - ${getLabel()}`)}
         className="group relative overflow-hidden rounded-xl border border-slate-200/85 bg-slate-50 p-1 cursor-zoom-in shadow-xs hover:shadow-md transition-shadow w-full aspect-[1/1.414]"
         title="Click to zoom certificate"
       >
         <div className="w-full h-full overflow-hidden rounded-lg bg-white relative flex items-center justify-center select-none animate-fade-in">
-          <AnimatePresence mode="wait">
-            <motion.img
-              key={activeCategory}
-              src={getRenderPath(activeImagePath)}
-              alt={getLabel()}
-              referrerPolicy="no-referrer"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="h-full w-full object-contain"
-              onError={(e) => {
-                // Highly robust fallback mechanism: use Picsum when local files do not exist yet (portrait dimension)
-                const seed = activeCategory === 'transcript' ? 'fist-transcript' : 'fist-presidents-award';
-                e.currentTarget.src = `https://picsum.photos/seed/${seed}/600/850`;
-              }}
-            />
-          </AnimatePresence>
+          <motion.img
+            src={getRenderPath(activeImagePath)}
+            alt={getLabel()}
+            referrerPolicy="no-referrer"
+            className="h-full w-full object-contain"
+            onError={(e) => {
+              e.currentTarget.src = `https://picsum.photos/seed/fist-transcript/600/850`;
+            }}
+          />
 
-          {/* Zoom Icon Overlay - Fully clickable button above image overlay */}
+          {/* Zoom Icon Overlay */}
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -986,30 +873,6 @@ function FistDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLightbox:
             <ZoomIn className="h-4 w-4" />
           </button>
         </div>
-      </div>
-
-      {/* The Category Switcher: small elegant pill-shaped buttons */}
-      <div className="flex w-full justify-between gap-1 p-1 bg-slate-100/80 border border-slate-200/50 rounded-lg">
-        <button
-          onClick={() => selectCategory('transcript')}
-          className={`flex-1 py-1 px-1 text-[11px] font-bold rounded-md transition-all cursor-pointer text-center ${
-            activeCategory === 'transcript'
-              ? 'bg-slate-900 text-white shadow-xs'
-              : 'text-slate-600 hover:bg-slate-200'
-          }`}
-        >
-          Transcript
-        </button>
-        <button
-          onClick={() => selectCategory('presidentsAward')}
-          className={`flex-1 py-1 px-1 text-[11px] font-bold rounded-md transition-all cursor-pointer text-center ${
-            activeCategory === 'presidentsAward'
-              ? 'bg-slate-900 text-white shadow-xs'
-              : 'text-slate-600 hover:bg-slate-200'
-          }`}
-        >
-          President's Award
-        </button>
       </div>
 
       {/* Label and Filename section */}
@@ -1030,7 +893,7 @@ function SpmDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLightbox: 
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const documents: Record<'spm' | 'cefr' | 'robotics', string[]> = {
-    spm: ['./SPM Certificate.jpg', './spm sijil.png'],
+    spm: ['./SPM Certificate.jpg'],
     cefr: ['./SPM CEFR.jpg'],
     robotics: ['./rero state.png', './rero district.png', './stem.png']
   };
@@ -1050,9 +913,7 @@ function SpmDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLightbox: 
   const getLabel = () => {
     switch (activeCategory) {
       case 'spm':
-        return currentIndex === 0
-          ? 'Sijil Pelajaran Malaysia (SPM) Certificate (Results)'
-          : 'Sijil Pelajaran Malaysia (SPM) Certificate (Official Sijil)';
+        return 'Sijil Pelajaran Malaysia (SPM) Certificate (Results)';
       case 'cefr':
         return 'SPM CEFR English Statement of Result';
       case 'robotics':

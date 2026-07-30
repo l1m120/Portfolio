@@ -284,9 +284,9 @@ export const honorsAwards: AwardItem[] = [
     badge: "100% Tuition Waiver",
     description: "Awarded the highly prestigious, fully-funded Jeffrey Cheah Foundation Scholarship (100% Tuition Fee Waiver) for pursuing a Bachelor of Science (Honours) in Computer Science at Sunway University. Selected based on outstanding academic excellence, leadership caliber, and potential to drive innovative technological advancements.",
     images: [
-      { path: "./JCF cert.jpg", label: "Jeffrey Cheah Foundation Scholarship Certificate" },
       { path: "./JCF ind.jpeg", label: "Jeffrey Cheah Scholarship Presentation (Individual)" },
-      { path: "./JCF grp.jpg", label: "Jeffrey Cheah Scholarship Presentation (Group)" }
+      { path: "./JCF grp.jpg", label: "Jeffrey Cheah Scholarship Presentation (Group)" },
+      { path: "./JCF cert.jpg", label: "Jeffrey Cheah Foundation Scholarship Certificate" }
     ]
   },
   {
@@ -296,7 +296,7 @@ export const honorsAwards: AwardItem[] = [
     issuer: "Sunway College Kuala Lumpur / Sunway University",
     year: "March 2023",
     category: "academic",
-    badge: "Valedictorian / Highest Scorer",
+    badge: "Highest Scorer",
     description: "Awarded the Sunway University President's Award presented to the highest scoring graduating student across the entire Foundation in Science and Technology (FIST) cohort, graduating with a perfect CGPA of 4.00/4.00.",
     images: [
       { path: "./FIST Presidents Award.jpg", label: "President's Award Certificate" }
@@ -312,7 +312,6 @@ export const honorsAwards: AwardItem[] = [
     badge: "National Cohort Top Achiever",
     description: "Conferred the Top Achiever Award for exceptional academic standing in the SPM national examinations, achieving 10 As (5 A+, 2 A, 3 A-) across Computer Science, Advanced Mathematics, Physics, Chemistry, and core sciences.",
     images: [
-      { path: "./SPM Certificate.jpg", label: "SPM Results Certificate" },
       { path: "./spm sijil.png", label: "Official SPM Sijil" }
     ]
   }
