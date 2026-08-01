@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import HomeTab from './components/HomeTab';
 import AboutTab from './components/AboutTab';
@@ -10,7 +10,7 @@ import ContactTab from './components/ContactTab';
 import Lightbox from './components/Lightbox';
 import { personalInfo } from './data';
 import { motion, AnimatePresence } from 'motion/react';
-import { Mail, Phone, MapPin, Github, Linkedin, Cpu } from 'lucide-react';
+import { Mail, Phone, MapPin, Github, Linkedin, Cpu, ShieldAlert } from 'lucide-react';
 
 type TabId = 'home' | 'about' | 'honors' | 'research' | 'products' | 'experience' | 'contact';
 
@@ -22,6 +22,51 @@ export default function App() {
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
   const [lightboxAlt, setLightboxAlt] = useState<string>('');
+
+  // Toast notification for media protection warning
+  const [protectionToast, setProtectionToast] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Prevent right click on all images and media across the website
+    const handleContextMenu = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (
+        target &&
+        (target.tagName === 'IMG' ||
+          target.tagName === 'PICTURE' ||
+          target.tagName === 'CANVAS' ||
+          target.closest('img') ||
+          target.closest('.protected-media') ||
+          target.closest('#lightbox-overlay'))
+      ) {
+        e.preventDefault();
+        setProtectionToast('Media Protected — Right-clicking & saving images is disabled.');
+        setTimeout(() => setProtectionToast(null), 3000);
+      }
+    };
+
+    // Prevent dragging images out of the browser
+    const handleDragStart = (e: DragEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (
+        target &&
+        (target.tagName === 'IMG' ||
+          target.tagName === 'PICTURE' ||
+          target.closest('img') ||
+          target.closest('.protected-media'))
+      ) {
+        e.preventDefault();
+      }
+    };
+
+    document.addEventListener('contextmenu', handleContextMenu);
+    document.addEventListener('dragstart', handleDragStart);
+
+    return () => {
+      document.removeEventListener('contextmenu', handleContextMenu);
+      document.removeEventListener('dragstart', handleDragStart);
+    };
+  }, []);
 
   const handleOpenLightbox = (src: string, alt: string) => {
     setLightboxSrc(src);
@@ -230,6 +275,24 @@ export default function App() {
         alt={lightboxAlt}
         onClose={handleCloseLightbox}
       />
+
+      {/* Floating Media Protection Toast Notification */}
+      <AnimatePresence>
+        {protectionToast && (
+          <motion.div
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            transition={{ duration: 0.25 }}
+            className="fixed bottom-6 right-6 z-50 flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-900 text-white shadow-2xl border border-slate-700 text-xs font-semibold select-none pointer-events-none"
+          >
+            <div className="p-1.5 rounded-lg bg-amber-500/20 text-amber-400 shrink-0">
+              <ShieldAlert className="h-4 w-4" />
+            </div>
+            <span>{protectionToast}</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

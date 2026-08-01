@@ -10,3 +10,24 @@
   --color-accent-light: #f6f3f7;
   --color-accent-border: #e6e0ea;
 }
+
+/* Global Media Protection - Prevent image save, copy, drag, and mobile tap-hold callout */
+img,
+picture,
+canvas,
+video,
+.protected-media {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+
+  -webkit-user-drag: none !important;
+  -khtml-user-drag: none !important;
+  -moz-user-drag: none !important;
+  -o-user-drag: none !important;
+  user-drag: none !important;
+
+  -webkit-touch-callout: none !important;
+}
+
