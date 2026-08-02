@@ -77,9 +77,6 @@ export default function Lightbox({ isOpen, src, alt, onClose }: LightboxProps) {
                   <ZoomIn className="h-10 w-10" />
                 </div>
                 <h4 className="text-xl font-medium tracking-tight text-white mb-2">{alt}</h4>
-                <p className="text-sm text-slate-400 max-w-md">
-                  Document asset path: <code className="bg-slate-900 px-1.5 py-0.5 rounded text-xs text-[#E9C3C9]">{src}</code>
-                </p>
                 <div className="mt-6 flex gap-3 justify-center">
                   <button
                     onClick={onClose}
@@ -93,10 +90,6 @@ export default function Lightbox({ isOpen, src, alt, onClose }: LightboxProps) {
 
             <div className="mt-3 text-center text-slate-300 flex flex-col items-center gap-1">
               <p className="text-sm font-medium">{alt}</p>
-              <div className="flex items-center gap-1.5 text-[11px] text-slate-400 bg-slate-900/60 px-2.5 py-0.5 rounded-full border border-slate-800">
-                <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
-                <span>Protected Media — Saving & Copying Disabled</span>
-              </div>
             </div>
           </motion.div>
         </motion.div>

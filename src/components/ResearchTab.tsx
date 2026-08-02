@@ -190,9 +190,6 @@ function JkrCollaborationSlideshow({ onOpenLightbox, awardTitle, images }: { onO
       </div>
       <div className="mt-3 flex items-center justify-between text-xs px-1">
         <span className="font-bold text-slate-800 leading-none">{activeSlide.label}</span>
-        <span className="text-[10px] font-mono font-bold text-slate-400">
-          {activeSlide.path.split('/').pop()?.toUpperCase() || `JKR_PIC_${slideIdx + 1}.JPG`}
-        </span>
       </div>
     </div>
   );
@@ -388,13 +385,10 @@ function EducationDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLigh
         </button>
       </div>
 
-      {/* Label and Filename section */}
+      {/* Label section */}
       <div className="w-full text-center select-none">
         <div className="text-[11px] font-bold text-slate-800 tracking-tight leading-snug">
           {getLabel()}
-        </div>
-        <div className="text-[9px] font-mono font-bold text-slate-400 mt-1">
-          {getFilenameForDisplay()}
         </div>
       </div>
     </div>
@@ -506,13 +500,10 @@ function FistDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLightbox:
         </button>
       </div>
 
-      {/* Label and Filename section */}
+      {/* Label section */}
       <div className="w-full text-center select-none">
         <div className="text-[11px] font-bold text-slate-800 tracking-tight leading-snug">
           {getLabel()}
-        </div>
-        <div className="text-[9px] font-mono font-bold text-slate-400 mt-1">
-          {getFilenameForDisplay()}
         </div>
       </div>
     </div>
@@ -691,13 +682,10 @@ function SpmDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLightbox: 
         </button>
       </div>
 
-      {/* Label and Filename section */}
+      {/* Label section */}
       <div className="w-full text-center select-none">
         <div className="text-[11px] font-bold text-slate-800 tracking-tight leading-snug">
           {getLabel()}
-        </div>
-        <div className="text-[9px] font-mono font-bold text-slate-400 mt-1">
-          {getFilenameForDisplay()}
         </div>
       </div>
     </div>

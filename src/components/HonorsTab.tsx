@@ -108,7 +108,6 @@ function WrenWinnerSlideshow({ onOpenLightbox, awardTitle }: { onOpenLightbox: (
       </div>
       <div className="mt-3 flex items-center justify-between text-xs px-1">
         <span className="font-bold text-slate-800 leading-none">{activeSlide.label}</span>
-        <span className="text-[10px] font-mono font-bold text-slate-400">{activeSlide.filename}</span>
       </div>
     </div>
   );
@@ -205,9 +204,6 @@ function DeansListSlideshow({
 
         <div className="mt-3 flex items-center justify-between text-xs px-1">
           <span className="font-bold text-slate-800 leading-none">{activeSlide.label}</span>
-          <span className="text-[10px] font-mono font-bold text-slate-400">
-            {activeSlide.path.split('/').pop()?.toUpperCase() || 'DOCUMENT.JPG'}
-          </span>
         </div>
       </div>
     </div>
@@ -303,9 +299,6 @@ function JkrCollaborationSlideshow({ onOpenLightbox, awardTitle, images }: { onO
       </div>
       <div className="mt-3 flex items-center justify-between text-xs px-1">
         <span className="font-bold text-slate-800 leading-none">{activeSlide.label}</span>
-        <span className="text-[10px] font-mono font-bold text-slate-400">
-          {activeSlide.path.split('/').pop()?.toUpperCase() || 'JKR_DOC.JPG'}
-        </span>
       </div>
     </div>
   );
@@ -410,7 +403,7 @@ export default function HonorsTab({ onOpenLightbox }: HonorsTabProps) {
             </div>
             <div>
               <div className="text-2xl font-black text-slate-900">4.00 / 4.00</div>
-              <div className="text-xs font-semibold text-slate-500">Top among FIST</div>
+              <div className="text-xs font-semibold text-slate-500">Valedictorian FIST</div>
             </div>
           </div>
         </div>
@@ -608,9 +601,6 @@ export default function HonorsTab({ onOpenLightbox }: HonorsTabProps) {
                             <span className="text-xs font-black text-slate-800 tracking-tight">
                               Scholastic Award Stage Photo
                             </span>
-                            <span className="text-[10px] text-slate-400 font-mono mt-1">
-                              STAGE_SCHOLASTIC_2026.JPG
-                            </span>
                           </div>
 
                           {/* Placeholder 2: Chancellor's Medal Stage Photo Pending */}
@@ -620,9 +610,6 @@ export default function HonorsTab({ onOpenLightbox }: HonorsTabProps) {
                             </div>
                             <span className="text-xs font-black text-slate-800 tracking-tight">
                               Chancellor's Medal Stage Photo
-                            </span>
-                            <span className="text-[10px] text-slate-400 font-mono mt-1">
-                              STAGE_MEDAL_2026.JPG
                             </span>
                           </div>
 
@@ -648,7 +635,6 @@ export default function HonorsTab({ onOpenLightbox }: HonorsTabProps) {
                             </div>
                             <div className="mt-3 flex items-center justify-between text-xs px-1">
                               <span className="font-bold text-slate-800 leading-none">LU Chancellor's Medal Close-up</span>
-                              <span className="text-[10px] font-mono font-bold text-slate-400">MEDAL_CLOSEUP.JPEG</span>
                             </div>
                           </div>
 
@@ -674,7 +660,6 @@ export default function HonorsTab({ onOpenLightbox }: HonorsTabProps) {
                             </div>
                             <div className="mt-3 flex items-center justify-between text-xs px-1">
                               <span className="font-bold text-slate-800 leading-none">Scholastic Award Certificate</span>
-                              <span className="text-[10px] font-mono font-bold text-slate-400">SCHOLASTIC_CERT.JPEG</span>
                             </div>
                           </div>
                         </div>
@@ -759,9 +744,6 @@ export default function HonorsTab({ onOpenLightbox }: HonorsTabProps) {
                                   </div>
                                   <div className="mt-3 flex items-center justify-between text-xs px-1">
                                     <span className="font-bold text-slate-800 leading-none">{img.label}</span>
-                                    <span className="text-[10px] font-mono font-bold text-slate-400">
-                                      {img.path.split('/').pop()?.toUpperCase() || 'DOCUMENT.JPG'}
-                                    </span>
                                   </div>
                                 </div>
                               </div>
@@ -803,9 +785,6 @@ export default function HonorsTab({ onOpenLightbox }: HonorsTabProps) {
                                 </div>
                                 <div className="mt-3 flex items-center justify-between text-xs px-1">
                                   <span className="font-bold text-slate-800 leading-none">{award.images[0].label}</span>
-                                  <span className="text-[10px] font-mono font-bold text-slate-400">
-                                    {award.images[0].path.split('/').pop()?.toUpperCase() || 'DOCUMENT.PNG'}
-                                  </span>
                                 </div>
                               </div>
                             )}
@@ -833,9 +812,6 @@ export default function HonorsTab({ onOpenLightbox }: HonorsTabProps) {
                                   </div>
                                   <div className="mt-3 flex items-center justify-between text-xs px-1">
                                     <span className="font-bold text-slate-800 leading-none">{award.images[1].label}</span>
-                                    <span className="text-[10px] font-mono font-bold text-slate-400">
-                                      {award.images[1].path.split('/').pop()?.toUpperCase() || 'DOCUMENT.PNG'}
-                                    </span>
                                   </div>
                                 </div>
                               )
