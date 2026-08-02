@@ -1,4 +1,4 @@
-import { GraduationCap, Award, FileText, Download, Eye, ExternalLink, ChevronLeft, ChevronRight, BookOpen, Layers, ZoomIn, Maximize2, Minimize2 } from 'lucide-react';
+import { GraduationCap, Award, FileText, Download, Eye, ExternalLink, ChevronLeft, ChevronRight, BookOpen, Layers, ZoomIn, Maximize2, Minimize2, MousePointerClick, CheckCircle2, ArrowRight, Sparkles } from 'lucide-react';
 import { publications, educationHistory, honorsAwards } from '../data';
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -357,7 +357,7 @@ function EducationDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLigh
           onClick={() => selectCategory('transcript')}
           className={`flex-1 py-1 px-0.5 text-[11px] font-bold rounded-md transition-all cursor-pointer text-center ${
             activeCategory === 'transcript'
-              ? 'bg-slate-900 text-white shadow-xs'
+              ? 'bg-accent-dark text-white shadow-xs'
               : 'text-slate-600 hover:bg-slate-200'
           }`}
         >
@@ -367,7 +367,7 @@ function EducationDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLigh
           onClick={() => selectCategory('jcf')}
           className={`flex-1 py-1 px-0.5 text-[11px] font-bold rounded-md transition-all cursor-pointer text-center ${
             activeCategory === 'jcf'
-              ? 'bg-slate-900 text-white shadow-xs'
+              ? 'bg-accent-dark text-white shadow-xs'
               : 'text-slate-600 hover:bg-slate-200'
           }`}
         >
@@ -377,7 +377,7 @@ function EducationDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLigh
           onClick={() => selectCategory('deansList')}
           className={`flex-1 py-1 px-0.5 text-[11px] font-bold rounded-md transition-all cursor-pointer text-center ${
             activeCategory === 'deansList'
-              ? 'bg-slate-900 text-white shadow-xs'
+              ? 'bg-accent-dark text-white shadow-xs'
               : 'text-slate-600 hover:bg-slate-200'
           }`}
         >
@@ -482,7 +482,7 @@ function FistDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLightbox:
           onClick={() => selectCategory('transcript')}
           className={`flex-1 py-1 px-1 text-[11px] font-bold rounded-md transition-all cursor-pointer text-center ${
             activeCategory === 'transcript'
-              ? 'bg-slate-900 text-white shadow-xs'
+              ? 'bg-accent-dark text-white shadow-xs'
               : 'text-slate-600 hover:bg-slate-200'
           }`}
         >
@@ -492,7 +492,7 @@ function FistDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLightbox:
           onClick={() => selectCategory('presidentsAward')}
           className={`flex-1 py-1 px-1 text-[11px] font-bold rounded-md transition-all cursor-pointer text-center ${
             activeCategory === 'presidentsAward'
-              ? 'bg-slate-900 text-white shadow-xs'
+              ? 'bg-accent-dark text-white shadow-xs'
               : 'text-slate-600 hover:bg-slate-200'
           }`}
         >
@@ -654,7 +654,7 @@ function SpmDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLightbox: 
           onClick={() => selectCategory('spm')}
           className={`flex-1 py-1 px-0.5 text-[11px] font-bold rounded-md transition-all cursor-pointer text-center ${
             activeCategory === 'spm'
-              ? 'bg-slate-900 text-white shadow-xs'
+              ? 'bg-accent-dark text-white shadow-xs'
               : 'text-slate-600 hover:bg-slate-200'
           }`}
         >
@@ -664,7 +664,7 @@ function SpmDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLightbox: 
           onClick={() => selectCategory('cefr')}
           className={`flex-1 py-1 px-0.5 text-[11px] font-bold rounded-md transition-all cursor-pointer text-center ${
             activeCategory === 'cefr'
-              ? 'bg-slate-900 text-white shadow-xs'
+              ? 'bg-accent-dark text-white shadow-xs'
               : 'text-slate-600 hover:bg-slate-200'
           }`}
         >
@@ -674,7 +674,7 @@ function SpmDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLightbox: 
           onClick={() => selectCategory('robotics')}
           className={`flex-1 py-1 px-0.5 text-[11px] font-bold rounded-md transition-all cursor-pointer text-center ${
             activeCategory === 'robotics'
-              ? 'bg-slate-900 text-white shadow-xs'
+              ? 'bg-accent-dark text-white shadow-xs'
               : 'text-slate-600 hover:bg-slate-200'
           }`}
         >
@@ -718,6 +718,8 @@ export default function ResearchTab({ onOpenLightbox, setActiveTab }: ResearchTa
     drone: {
       id: 'drone',
       title: 'Journal of Electrical and Computer Engineering',
+      typeLabel: 'Peer-Reviewed Journal',
+      year: '2026',
       filename: 'jece.pdf',
       path: './Journal of Electrical and Computer Engineering - 2026 - Teoh - Recent Advancements  Challenges  and Future Directions of.pdf',
       abstract: 'Abstract: The implementation of unmanned aerial vehicles (UAVs) or drones has gained immense attention in recent years due to their high potential in enhancing traffic management in a smart city context. This systematic review aims to provide a thorough analysis of the applications of drones in smart traffic management, and limitations and challenges upon technology adoption, as well as future research directions in this field. The search was conducted by following the Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) method to identify relevant articles based on inclusion and exclusion criteria published in the past 10 years, specifically from January 1, 2014, to September 19, 2024. By analyzing the final selection of 14 research articles from databases such as Scopus, ScienceDirect, SpringerOpen, ACM Digital Library, and EBSCO, the results reveal that integrating UAVs into smart city traffic management provides substantial advantages in the perspectives of both ground monitoring and airspace control. This systematic review also contributes to offering a solid foundation for researchers or stakeholders to gain a thorough understanding of drone technologies in making revolutionary breakthroughs within the field of traffic-related aspect to strengthen the transportation system in smart cities.',
@@ -726,6 +728,8 @@ export default function ResearchTab({ onOpenLightbox, setActiveTab }: ResearchTa
     wren: {
       id: 'wren',
       title: 'Women Research Engineer Network (WREN) Symposium 2025',
+      typeLabel: 'Symposium Proceeding',
+      year: '2025',
       filename: 'wren-manuscript.pdf',
       path: './Proceedings-WREN-Symposium-2025-extracted.pdf',
       abstract: 'Abstract: Resilient, quality, sustainable and reliable infrastructure are dominant to enhance urban transportation as aligned with Sustainable Development Goals (SDG) 9 and 11 by promoting sustainable industrialization. Existing research merely focuses on evaluating the performance of detection models across different techniques and technologies. This study aims to examine the variations in deep learning model design and computational hardware in influencing vehicle detection performance. Several segmentation and detection models were trained and evaluated under different preprocessing techniques and Graphics Processing Units (GPU) environments. The results show that blurring irrelevant regions remarkably enhanced the detection performance while heavy augmentation increased the training time despite maintaining accuracy. Hardware advancements greatly reduced training time with only minor improvement in detection. The findings emphasize the importance of equipping computing configurations to build a more scalable and resilient traffic surveillance system that can support smart city initiatives through accurate and faster vehicle detection. ',
@@ -734,6 +738,8 @@ export default function ResearchTab({ onOpenLightbox, setActiveTab }: ResearchTa
     iwait: {
       id: 'iwait',
       title: 'International Workshop on Advanced Image Technology (IWAIT) 2026',
+      typeLabel: 'International Proceeding',
+      year: '2026',
       filename: 'iwait-abstract.pdf',
       path: './IWAIT2026_paper_29.pdf',
       abstract: 'Abstract: This study proposes MY-VID (MalaYsia Vehicle Image Dataset), a novel open-source vehicle dataset tailored to Malaysian road conditions emphasizing on commercial and private vehicles classification. Motivated by high road accident fatality rates and the absence of localized datasets in Southeast Asia (SEA), this study introduces a privacy-compliant annotated image dataset captured from Malaysian highway. All stages from data collection, anonymization, preprocessing and augmentation were conducted offline to prioritize data security and privacy. These privacy safeguards allowed the dataset to be safely released as an open-source resource on the Zenodo platform for public accessibility. Benchmark experiments with YOLO11 and YOLO12 demonstrate strong performance and highlight the importance of localized dataset in vehicle detection accuracy. The dataset and training framework aim to support future research in intelligent transportation system (ITS), traffic safety analysis and road infrastructure development in Malaysia.',
@@ -746,7 +752,7 @@ export default function ResearchTab({ onOpenLightbox, setActiveTab }: ResearchTa
   return (
     <div id="research-tab-container" className="space-y-16 py-4">
       {/* MODULE 1: Publications & Document Viewers */}
-      <section id="publications-viewers-section" className="space-y-8">
+      <section id="publications-viewers-section" className="space-y-6">
         <div className="border-b border-slate-200 pb-4">
           <h2 className="flex items-center gap-2.5 text-2xl font-extrabold tracking-tight text-slate-900">
             <BookOpen className="h-6 w-6 text-accent" />
@@ -757,22 +763,103 @@ export default function ResearchTab({ onOpenLightbox, setActiveTab }: ResearchTa
           </p>
         </div>
 
-        {/* Selected Document Selection Tabs */}
-        <div id="pdf-viewers-navigation" className="flex flex-wrap gap-2">
-          {(['drone', 'wren', 'iwait'] as const).map((key) => {
+        {/* Banner callout introducing 3 available interactive manuscripts */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-gradient-to-r from-purple-50 via-accent-light to-purple-50 text-slate-900 p-4.5 rounded-xl shadow-xs border border-accent/30">
+          <div className="flex items-center gap-3">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-accent/15 text-accent ring-1 ring-accent/30">
+              <Sparkles className="h-5 w-5" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-bold text-slate-900 uppercase tracking-wider">
+                  Interactive Publication Reader
+                </span>
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100/80 px-2.5 py-0.5 text-[10px] font-bold text-emerald-800 border border-emerald-300/60">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-ping" />
+                  3 Papers Available
+                </span>
+              </div>
+              <p className="text-xs text-slate-600 mt-0.5">
+                Click any of the 3 manuscript cards below to load its full document into the viewer below
+              </p>
+            </div>
+          </div>
+          <div className="hidden lg:flex items-center gap-1.5 text-xs font-semibold text-accent bg-white/90 px-3.5 py-1.5 rounded-lg border border-accent/25 shadow-xs shrink-0">
+            <MousePointerClick className="h-4 w-4 text-accent animate-bounce" />
+            <span>Select a paper to read</span>
+          </div>
+        </div>
+
+        {/* Selected Document Selection Cards */}
+        <div id="pdf-viewers-navigation" className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {(['drone', 'wren', 'iwait'] as const).map((key, idx) => {
             const isSelected = selectedDocId === key;
+            const doc = documents[key];
             return (
               <button
                 key={key}
                 id={`btn-select-doc-${key}`}
                 onClick={() => setSelectedDocId(key)}
-                className={`px-4 py-2.5 text-xs font-bold rounded-lg border transition-all cursor-pointer ${
+                className={`group text-left p-4.5 rounded-xl border transition-all duration-300 cursor-pointer flex flex-col justify-between relative overflow-hidden ${
                   isSelected
-                    ? 'bg-slate-900 text-white border-slate-900 shadow-sm'
-                    : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
+                    ? 'bg-purple-50/90 text-slate-900 border-accent shadow-md ring-2 ring-accent/30 -translate-y-1'
+                    : 'bg-white text-slate-800 border-slate-200 hover:border-accent/40 hover:bg-purple-50/40 hover:shadow-xs hover:-translate-y-0.5'
                 }`}
               >
-                {documents[key].title}
+                <div className="space-y-3 w-full">
+                  <div className="flex items-center justify-between">
+                    <span
+                      className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded text-[10px] font-bold tracking-wide uppercase ${
+                        isSelected
+                          ? 'bg-accent text-white border border-accent-hover shadow-xs'
+                          : 'bg-slate-100 text-slate-600 border border-slate-200'
+                      }`}
+                    >
+                      <FileText className="h-3 w-3" />
+                      {doc.typeLabel}
+                    </span>
+                    <span className={`text-[10px] font-mono font-bold ${isSelected ? 'text-accent font-extrabold' : 'text-slate-400'}`}>
+                      {doc.year}
+                    </span>
+                  </div>
+
+                  <div>
+                    <h3
+                      className={`text-xs sm:text-sm font-bold leading-snug transition-colors ${
+                        isSelected ? 'text-slate-900' : 'text-slate-800 group-hover:text-accent'
+                      }`}
+                    >
+                      {doc.title}
+                    </h3>
+                  </div>
+                </div>
+
+                <div className="mt-4 pt-3 border-t border-slate-200/60 w-full flex items-center justify-between text-xs">
+                  {isSelected ? (
+                    <div className="flex items-center gap-1.5 text-emerald-700 font-bold text-[11px]">
+                      <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600" />
+                      <span>Loaded in Reader Below</span>
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-1.5 text-slate-500 group-hover:text-accent font-semibold text-[11px] transition-colors">
+                      <span>Click to view paper</span>
+                      <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  )}
+                  <span
+                    className={`text-[10px] font-bold px-2 py-0.5 rounded ${
+                      isSelected
+                        ? 'bg-accent/15 text-accent border border-accent/25'
+                        : 'bg-slate-50 text-slate-400 group-hover:bg-accent/10 group-hover:text-accent'
+                    }`}
+                  >
+                    PDF
+                  </span>
+                </div>
+
+                {isSelected && (
+                  <div className="absolute top-0 right-0 h-1.5 w-full bg-accent" />
+                )}
               </button>
             );
           })}
@@ -781,13 +868,13 @@ export default function ResearchTab({ onOpenLightbox, setActiveTab }: ResearchTa
         {/* Immersive Document Viewer Frame */}
         <div id="interactive-pdf-viewer" className="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-white border border-slate-200/80 rounded-2xl p-6 shadow-xs">
           {/* Left Panel: IFrame Core Document Viewer */}
-          <div className={isFullscreen ? "fixed inset-0 z-50 bg-slate-950 flex flex-col h-screen w-screen p-4 sm:p-6" : "lg:col-span-8 flex flex-col"}>
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between bg-slate-900 border-b border-slate-800 text-slate-100 px-4 py-3 rounded-t-xl gap-3">
+          <div className={isFullscreen ? "fixed inset-0 z-50 bg-[#1e0f1d] flex flex-col h-screen w-screen p-4 sm:p-6" : "lg:col-span-8 flex flex-col"}>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between bg-accent-dark border-b border-accent-purple/60 text-slate-100 px-4 py-3 rounded-t-xl gap-3">
               <div className="flex items-center gap-2 overflow-hidden mr-4">
                 <FileText className="h-4 w-4 shrink-0 text-accent animate-pulse" />
                 <span className="text-xs font-mono tracking-tight truncate text-slate-200">{activeDoc.filename}</span>
                 {isFullscreen && (
-                  <span className="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded font-bold font-mono ml-2 shrink-0">
+                  <span className="text-[10px] bg-accent-deep text-slate-300 border border-accent-purple px-2 py-0.5 rounded font-bold font-mono ml-2 shrink-0">
                     ESC to exit
                   </span>
                 )}
@@ -797,7 +884,7 @@ export default function ResearchTab({ onOpenLightbox, setActiveTab }: ResearchTa
                 {/* Fullscreen Button */}
                 <button
                   onClick={() => setIsFullscreen(!isFullscreen)}
-                  className="inline-flex items-center gap-1.5 bg-slate-800 hover:bg-slate-750 border border-slate-700 hover:border-slate-600 text-white text-[10px] px-3.5 py-1 rounded transition-all font-bold cursor-pointer"
+                  className="inline-flex items-center gap-1.5 bg-accent-deep hover:bg-accent-purple border border-accent-purple/70 text-white text-[10px] px-3.5 py-1 rounded transition-all font-bold cursor-pointer"
                   title={isFullscreen ? "Exit fullscreen view" : "View in fullscreen"}
                 >
                   {isFullscreen ? (
@@ -816,7 +903,7 @@ export default function ResearchTab({ onOpenLightbox, setActiveTab }: ResearchTa
                 <a
                   href={activeDoc.path}
                   download={activeDoc.filename}
-                  className="inline-flex items-center gap-1.5 bg-slate-800 hover:bg-slate-750 border border-slate-700 hover:border-slate-600 text-white text-[10px] px-3.5 py-1 rounded transition-all font-bold cursor-pointer"
+                  className="inline-flex items-center gap-1.5 bg-accent-deep hover:bg-accent-purple border border-accent-purple/70 text-white text-[10px] px-3.5 py-1 rounded transition-all font-bold cursor-pointer"
                   title="Direct PDF download to local storage"
                 >
                   <Download className="h-3.5 w-3.5" />
@@ -826,7 +913,7 @@ export default function ResearchTab({ onOpenLightbox, setActiveTab }: ResearchTa
             </div>
 
             {/* Interactive PDF reader slot with custom scrolling & browser fallback support */}
-            <div className={`relative w-full bg-slate-900 overflow-hidden ${isFullscreen ? 'flex-1 rounded-b-xl border border-slate-800' : 'h-[600px] border-x border-b border-slate-200/70 rounded-b-xl'}`}>
+            <div className={`relative w-full bg-accent-dark overflow-hidden ${isFullscreen ? 'flex-1 rounded-b-xl border border-accent-purple' : 'h-[600px] border-x border-b border-slate-200/70 rounded-b-xl'}`}>
               <object
                 key={`${selectedDocId}-${isFullscreen}`}
                 id="active-pdf-viewer-frame"
@@ -834,7 +921,7 @@ export default function ResearchTab({ onOpenLightbox, setActiveTab }: ResearchTa
                 type="application/pdf"
                 width="100%"
                 height="100%"
-                className="w-full h-full border-none bg-slate-900 rounded-b-xl"
+                className="w-full h-full border-none bg-accent-dark rounded-b-xl"
               >
                 <div className="flex flex-col items-center justify-center h-full p-8 text-center bg-slate-50 space-y-4">
                   <div className="h-16 w-16 bg-accent/15 rounded-full flex items-center justify-center text-accent ring-8 ring-accent/5">
