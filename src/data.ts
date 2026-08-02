@@ -260,7 +260,7 @@ export const honorsAwards: AwardItem[] = [
   {
     id: "award-deans-list",
     title: "Dean's List Award (5 Consecutive Semesters)",
-    event: "School of Engineering & Technology Academic Excellence",
+    event: "Faculty of Engineering & Technology Academic Excellence",
     issuer: "Sunway University",
     year: "2024 – 2025",
     category: "academic",
@@ -277,7 +277,7 @@ export const honorsAwards: AwardItem[] = [
   {
     id: "award-jcf-scholarship",
     title: "Jeffrey Cheah Foundation (JCF) Scholarship",
-    event: "Scholarship Award Ceremony 2023",
+    event: "Jeffrey Cheah Foundation Scholarships and Awards Ceremony 2023",
     issuer: "Jeffrey Cheah Foundation (JCF)",
     year: "November 2023",
     category: "academic",
@@ -296,7 +296,7 @@ export const honorsAwards: AwardItem[] = [
     issuer: "Sunway College Kuala Lumpur / Sunway University",
     year: "March 2023",
     category: "academic",
-    badge: "Highest Scorer",
+    badge: "Valedictorian / Highest Scorer",
     description: "Awarded the Sunway University President's Award presented to the highest scoring graduating student across the entire Foundation in Science and Technology (FIST) cohort, graduating with a perfect CGPA of 4.00/4.00.",
     images: [
       { path: "./FIST Presidents Award.jpg", label: "President's Award Certificate" }
