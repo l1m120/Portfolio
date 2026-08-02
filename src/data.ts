@@ -293,10 +293,10 @@ export const honorsAwards: AwardItem[] = [
     id: "award-presidents-award",
     title: "Sunway University President’s Award",
     event: "Foundation in Science & Technology Graduation",
-    issuer: "Sunway College Kuala Lumpur / Sunway University",
+    issuer: "Sunway College Kuala Lumpur",
     year: "March 2023",
     category: "academic",
-    badge: "Valedictorian / Highest Scorer",
+    badge: "Highest Scorer",
     description: "Awarded the Sunway University President's Award presented to the highest scoring graduating student across the entire Foundation in Science and Technology (FIST) cohort, graduating with a perfect CGPA of 4.00/4.00.",
     images: [
       { path: "./FIST Presidents Award.jpg", label: "President's Award Certificate" }
