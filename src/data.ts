@@ -7,7 +7,7 @@ export const personalInfo = {
   location: "Subang Jaya, Selangor, Malaysia",
   phone: "+6010-898 5595",
   email: "lzx040921@gmail.com",
-  linkedin: "https://www.linkedin.com/in/z-l-660b66188/", // standard URL based on name and context
+  linkedin: "https://www.linkedin.com/in/zi-xuan-l-660b66188/", // standard URL based on name and context
   github: "https://github.com/l1m120",
   orcid: "https://orcid.org/0009-0003-7356-3912", // standard ORCID or link
   objective: "Results-driven AI Engineer and Computer Science researcher specializing in Computer Vision and Vision-Language Models (VLMs), with a proven track record of optimizing architectures for high-speed real-time deployment. Adept at engineering end-to-end MLOps pipelines, managing Docker containerization, and building scalable backends with FastAPI. Seeking to leverage hands-on experience in model quantization and edge optimization to build and ship highly efficient, production-ready AI solutions, while looking forward to pioneering innovative, scalable solutions through a Direct PhD in Computing at Sunway University.",
