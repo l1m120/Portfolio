@@ -9,6 +9,9 @@
   --color-accent-hover: #897891;
   --color-accent-light: #f6f3f7;
   --color-accent-border: #e6e0ea;
+  --color-accent-dark: #2a1529;
+  --color-accent-deep: #3b1e3b;
+  --color-accent-purple: #522a51;
 }
 
 /* Global Media Protection - Prevent image save, copy, drag, and mobile tap-hold callout */
