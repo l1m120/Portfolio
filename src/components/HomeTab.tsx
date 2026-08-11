@@ -15,7 +15,7 @@ export default function HomeTab({ onOpenLightbox, setActiveTab }: HomeTabProps) 
     { label: "Dataset Size", value: "9,000+", desc: "Local bounding annotations (MY-VID)" },
     { label: "Conference Presentations", value: "2+", desc: "UoW WREN and IWAIT events" },
     { label: "Years AI R&D Experience", value: "2+", desc: "Cooperative research and analytics" },
-    { label: "AI Models Developed", value: "100+", desc: "CV, Object Trackers and MLOps APIs" },
+    { label: "AI Models Tested", value: "100+", desc: "CV, Object Trackers and MLOps APIs" },
   ];
 
   // Specific Featured Highlights
@@ -92,7 +92,7 @@ export default function HomeTab({ onOpenLightbox, setActiveTab }: HomeTabProps) 
           <div className="flex flex-wrap gap-3 pt-2">
             <button
               onClick={() => setActiveTab('research')}
-              className="group flex items-center gap-1.5 px-5 py-2.5 text-xs sm:text-sm font-bold text-white bg-slate-900 rounded-lg hover:bg-accent hover:border-accent shadow-md cursor-pointer transition-all"
+              className="group flex items-center gap-1.5 px-5 py-2.5 text-xs sm:text-sm font-bold text-white bg-accent-dark rounded-lg hover:bg-accent hover:border-accent shadow-md cursor-pointer transition-all"
             >
               <span>View Research</span>
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -219,7 +219,7 @@ export default function HomeTab({ onOpenLightbox, setActiveTab }: HomeTabProps) 
               <div className="absolute inset-0 z-10 bg-transparent" />
 
               <img
-                src="./3d_avatar.png"
+                src="./zx.jpeg"
                 alt="Zi Xuan Lim"
                 referrerPolicy="no-referrer"
                 className="h-80 w-80 sm:h-96 sm:w-96 rounded-xl object-cover select-none pointer-events-none"
@@ -349,7 +349,7 @@ export default function HomeTab({ onOpenLightbox, setActiveTab }: HomeTabProps) 
                 <Target className="h-4.5 w-4.5 text-purple-500 shrink-0 mt-0.5" />
                 <div className="space-y-0.5">
                   <h5 className="font-bold text-slate-800 text-xs sm:text-sm">Computer Vision</h5>
-                  <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed">Publishing YOLO11 evaluation weights and comparing on-board drone frame latency thresholds.</p>
+                  <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed">Conducting Computer Vision research on flooded building detection and vehicle detection in Malaysia in collaboration with external partners.</p>
                 </div>
               </div>
 
@@ -365,7 +365,7 @@ export default function HomeTab({ onOpenLightbox, setActiveTab }: HomeTabProps) 
                 <Target className="h-4.5 w-4.5 text-amber-500 shrink-0 mt-0.5" />
                 <div className="space-y-0.5">
                   <h5 className="font-bold text-slate-800 text-xs sm:text-sm">Direct PhD Preparation</h5>
-                  <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed">Writing postgraduate proposals targeting Sunway Labs under industry eKYC/VLM sponsorships.</p>
+                  <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed">Writing postgraduate proposals targeting Malaysia's Intelligent Transportation System (ITS) roadmap to improve traffic monitoring.</p>
                 </div>
               </div>
 
@@ -373,7 +373,7 @@ export default function HomeTab({ onOpenLightbox, setActiveTab }: HomeTabProps) 
                 <Target className="h-4.5 w-4.5 text-rose-500 shrink-0 mt-0.5" />
                 <div className="space-y-0.5">
                   <h5 className="font-bold text-slate-800 text-xs sm:text-sm">Flood Response Research</h5>
-                  <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed">Completing systematic literature review mapping deep learning models under flash monsoon water scenarios.</p>
+                  <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed">Focusing on a systematic review article on flood response in Malaysia, analyzing technical advancements, adoption challenges, and future directions.</p>
                 </div>
               </div>
             </div>

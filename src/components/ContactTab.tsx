@@ -176,7 +176,7 @@ export default function ContactTab() {
             {/* Secure premium resume downloading button */}
             <div className="pt-6 border-t border-slate-100">
               <a
-                href="/ZiXuanLim_CV.pdf"
+                href="./ZiXuanLim_CV.pdf"
                 download="ZiXuanLim_CV.pdf"
                 className="w-full flex items-center justify-center gap-2 bg-slate-900 hover:bg-accent text-white py-2.5 rounded-xl font-bold transition-all shadow-sm cursor-pointer text-center no-underline"
               >
