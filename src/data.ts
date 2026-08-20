@@ -73,7 +73,7 @@ export const teachingExperience: ExperienceItem[] = [
     metrics: [
       { label: "DELIVERY FORMAT", value: "1-on-1" },
       { label: "SYLLABI", value: "IGCSE & SPM" },
-      { label: "CORE FOCUS", value: "Agorithm & Code" }
+      { label: "CORE FOCUS", value: "Algorithm & Code" }
     ],
     bullets: [
       "Syllabus Mentorship & Cohort Guidance: Mentored secondary school students across IGCSE (CAIE) and SPM (KPM) Computer Science curricula, covering programming fundamentals, algorithms, computational thinking, and core computer science theory.",

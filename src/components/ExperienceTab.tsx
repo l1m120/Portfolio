@@ -1,6 +1,6 @@
-import { Briefcase, FlaskConical, ExternalLink, Tag, Github, ArrowUpRight, Zap, Target, Layout, ZoomIn, CheckCircle, Server, Users, Database, Cpu, Network, Terminal, Code2, Layers, ArrowRight, BookOpen, FileText, Sparkles, GraduationCap } from 'lucide-react';
+import { Briefcase, FlaskConical, ExternalLink, Tag, Github, ArrowUpRight, Zap, Target, Layout, ZoomIn, CheckCircle, Server, Users, Database, Cpu, Network, Terminal, Code2, Layers, ArrowRight, BookOpen, FileText, Sparkles, GraduationCap, ChevronLeft, ChevronRight } from 'lucide-react';
 import { industryExperience, teachingExperience, researchExperience, CVProjects, independentProjects } from '../data';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { useState, useEffect } from 'react';
 
 interface ExperienceTabProps {
@@ -12,6 +12,7 @@ export default function ExperienceTab({ onOpenLightbox, setActiveTab }: Experien
   const [expandedProjectId, setExpandedProjectId] = useState<string | null>(null);
   const [wiseAiImgIdx, setWiseAiImgIdx] = useState(0);
   const [stcImgIdx, setStcImgIdx] = useState(0);
+  const [currentTutoringIdx, setCurrentTutoringIdx] = useState(0);
 
   const wiseAiImages = ["./WISE AI.jpeg", "./WISE AI 2.jpeg"];
   const stcImages = ["./STC grp1.jpeg", "./STC grp2.jpeg"];
@@ -267,7 +268,7 @@ export default function ExperienceTab({ onOpenLightbox, setActiveTab }: Experien
             </div>
 
             {/* Left side details */}
-            <div className="lg:col-span-6 lg:self-center space-y-6">
+            <div className="lg:col-span-7 lg:self-center space-y-6">
 
               {/* Sub-metrics inside the experience block */}
               {exp.metrics && (
@@ -300,40 +301,49 @@ export default function ExperienceTab({ onOpenLightbox, setActiveTab }: Experien
               </ul>
             </div>
 
-            {/* Right side media showcase */}
-            <div className="lg:col-span-6 lg:self-center flex flex-col justify-start items-center">
-              <div className="w-full max-w-[560px] lg:max-w-full flex flex-col items-center">
-                <div className="grid grid-cols-2 gap-3 w-full">
+            {/* Right side media showcase: Vertically Scrollable Image Stack aligned with WISE AI */}
+            <div className="lg:col-span-5 flex flex-col justify-start items-center w-full min-w-0">
+              <div className="w-full max-w-[440px] lg:max-w-full flex flex-col items-center">
+                {/* Scrollable vertical container matching left text height */}
+                <div className="w-full max-h-[460px] lg:max-h-[490px] overflow-y-auto pr-2 space-y-3.5 scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-slate-100 rounded-xl">
                   {tutoringImages.map((img, tIdx) => (
                     <div
                       key={tIdx}
                       onClick={() => onOpenLightbox(img.src, `GoLearn Tutoring - ${img.label}`)}
-                      className={`group relative overflow-hidden rounded-xl border border-slate-200/90 bg-white p-1.5 cursor-zoom-in shadow-xs hover:shadow-lg hover:border-accent/50 hover:-translate-y-0.5 transition-all duration-300 aspect-[16/11] sm:aspect-[4/3] flex items-center justify-center ${
-                        tIdx === 4 ? 'col-span-2 justify-self-center w-full max-w-[calc(50%-0.375rem)]' : ''
-                      }`}
+                      className="group relative overflow-hidden rounded-xl border-2 border-slate-200/80 bg-slate-50 p-1.5 cursor-zoom-in shadow-sm hover:shadow-lg hover:border-accent/40 transition-all duration-300 w-full aspect-[4/3] flex items-center justify-center select-none"
                       title={`Click to zoom: ${img.label}`}
                     >
                       <img
                         src={img.src}
                         alt={img.label}
                         referrerPolicy="no-referrer"
-                        className="h-full w-full object-cover object-top rounded-lg transition-transform duration-300 group-hover:scale-[1.03]"
+                        className="h-full w-full object-cover rounded-lg transition-transform duration-300 group-hover:scale-[1.03]"
                         onError={(e) => {
-                          e.currentTarget.src = img.fallback || 'https://picsum.photos/seed/tutor/400/300';
+                          e.currentTarget.src = img.fallback || 'https://picsum.photos/seed/tutor/500/375';
                         }}
                       />
-                      <div className="absolute top-2 right-2 rounded-full bg-black/65 backdrop-blur-md p-1.5 text-white opacity-0 group-hover:opacity-100 transition-opacity z-10 shadow-sm">
-                        <ZoomIn className="h-3.5 w-3.5" />
+
+                      {/* Top-right Zoom Badge */}
+                      <div className="absolute top-3 right-3 rounded-full bg-black/60 backdrop-blur-md p-1.5 text-white opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                        <ZoomIn className="h-4 w-4" />
                       </div>
-                      <div className="absolute bottom-2 left-2 right-2 rounded-md bg-slate-950/80 backdrop-blur-xs px-2 py-1 text-center text-[10px] font-semibold text-white tracking-tight truncate select-none border border-white/10">
+
+                      {/* Bottom Caption Overlay */}
+                      <div className="absolute bottom-2.5 left-2.5 right-2.5 rounded-md bg-slate-950/80 backdrop-blur-xs px-2.5 py-1 text-center text-[11px] font-semibold text-white tracking-tight truncate border border-white/10 shadow-xs z-10">
                         {img.label}
                       </div>
                     </div>
                   ))}
                 </div>
-                <p className="text-[11px] text-slate-400 font-medium select-none text-center mt-3">
-                  Click any digital whiteboard lesson above to expand full-size proof.
-                </p>
+
+                {/* Subtitle / scroll hint */}
+                <div className="flex items-center justify-between w-full px-2 mt-2.5 text-[11px] text-slate-400 font-medium select-none">
+                  <span className="flex items-center gap-1 text-slate-500">
+                    <span>Scroll for more lessons</span>
+                    <span>⬇️</span>
+                  </span>
+                  <span>5 Whiteboard Proofs &bull; Click to zoom</span>
+                </div>
               </div>
             </div>
           </div>
@@ -396,65 +406,30 @@ export default function ExperienceTab({ onOpenLightbox, setActiveTab }: Experien
                 })}
               </ul>
 
-              {/* Research Outputs & Direct Link to Research Tab */}
-              {(exp.id === 'humac' || exp.id === 'lab-assistant') && (
-                <div className="pt-4 border-t border-slate-100/90 space-y-3">
+              {/* Direct Link to Research Tab */}
+              {(exp.id === 'humac' || exp.id === 'lab-assistant') && setActiveTab && (
+                <div className="pt-3.5 border-t border-slate-100 space-y-2.5">
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <div className="flex h-6 w-6 items-center justify-center rounded-md bg-accent/15 text-accent">
-                        <BookOpen className="h-3.5 w-3.5" />
-                      </div>
-                      <h4 className="text-xs font-bold uppercase tracking-wider text-slate-800">
-                        Associated Research Outputs & Publications
-                      </h4>
+                    <div className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                      <BookOpen className="h-3.5 w-3.5 text-accent" />
+                      <span>Associated Publications & Research Outputs</span>
                     </div>
-                    <span className="text-[10px] font-mono font-bold text-accent bg-purple-50 px-2 py-0.5 rounded-full border border-purple-100">
-                      3 Papers &bull; 1 Dataset
+                  </div>
+                  <button
+                    onClick={() => {
+                      setActiveTab('research');
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className="group relative inline-flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-slate-900 text-white font-bold text-xs shadow-md shadow-slate-900/10 hover:bg-accent hover:shadow-accent/25 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 cursor-pointer"
+                  >
+                    <span className="flex h-5 w-5 items-center justify-center rounded-md bg-white/15 text-white transition-colors group-hover:bg-white/25">
+                      <FileText className="h-3.5 w-3.5 transition-transform group-hover:scale-110" />
                     </span>
-                  </div>
-
-                  {/* Highlights Grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                    <div className="p-2.5 rounded-lg bg-slate-50/90 border border-slate-200/80 hover:bg-purple-50/40 hover:border-accent/30 transition-colors">
-                      <div className="flex items-center gap-1.5 text-[10px] font-bold text-accent mb-0.5">
-                        <FileText className="h-3 w-3 shrink-0" />
-                        <span>Q2 Journal Article (Co-First)</span>
-                      </div>
-                      <p className="text-[11px] font-semibold text-slate-800 leading-tight">
-                        Smart City UAV Traffic Management (JECE 2026)
-                      </p>
-                    </div>
-
-                    <div className="p-2.5 rounded-lg bg-slate-50/90 border border-slate-200/80 hover:bg-purple-50/40 hover:border-accent/30 transition-colors">
-                      <div className="flex items-center gap-1.5 text-[10px] font-bold text-accent mb-0.5">
-                        <Sparkles className="h-3 w-3 shrink-0" />
-                        <span>2 Proceedings & Dataset</span>
-                      </div>
-                      <p className="text-[11px] font-semibold text-slate-800 leading-tight">
-                        IWAIT '26 &bull; WREN '25 &bull; MY-VID (9,000+ annotations)
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Direct Navigation Button to Research Tab */}
-                  {setActiveTab && (
-                    <button
-                      onClick={() => {
-                        setActiveTab('research');
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                      }}
-                      className="group w-full flex items-center justify-between px-4 py-2.5 rounded-xl bg-purple-50/80 border border-accent/30 text-accent font-bold text-xs hover:bg-accent hover:text-white hover:border-accent hover:shadow-md transition-all duration-300 cursor-pointer"
-                    >
-                      <span className="flex items-center gap-2">
-                        <FileText className="h-4 w-4 transition-transform group-hover:scale-110" />
-                        <span>Explore Full Research Manuscripts & Benchmarks</span>
-                      </span>
-                      <div className="flex items-center gap-1 text-[11px] font-semibold">
-                        <span>View in Research Tab</span>
-                        <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-                      </div>
-                    </button>
-                  )}
+                    <span>View Manuscripts & Benchmarks in Research Tab</span>
+                    <span className="flex items-center justify-center h-5 w-5 rounded-full bg-white/10 group-hover:bg-white/20 transition-colors ml-0.5">
+                      <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                    </span>
+                  </button>
                 </div>
               )}
             </div>
