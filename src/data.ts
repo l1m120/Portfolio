@@ -15,12 +15,31 @@ export const personalInfo = {
 };
 
 export const skillsData = {
-  deepLearning: ["PyTorch", "TensorFlow", "Scikit-learn", "YOLO", "Faster R-CNN", "DETR", "MobileNet"],
-  computerVision: ["OpenCV", "MediaPipe", "Roboflow", "LabelMe", "Image Augmentation", "Model Evaluation"],
-  multimodalAI: ["Vision-Language Models (VLMs)", "Qwen-VL", "Qwen-Image-Edit"],
-  deploymentDevOps: ["FastAPI", "Gradio", "Streamlit", "Quantization", "Docker", "Conda", "Git/GitHub", "Linux/Ubuntu"],
-  programmingDatabases: ["Python", "Java", "Scala", "SQL (Oracle/MySQL)", "MongoDB"],
-  hardware: ["UAV Assembly", "Circuit Integration"]
+  deepLearning: [
+    "PyTorch", "TensorFlow", "Scikit-learn", "YOLOv8/10/11/26", "Faster R-CNN", "DETR", "MobileNet",
+    "Vision-Language Models (VLMs)", "Qwen-VL", "Transfer Learning", "Hyperparameter Tuning",
+    "NumPy", "Pandas", "SciPy", "Matplotlib"
+  ],
+  computerVision: [
+    "OpenCV", "MediaPipe", "Roboflow", "LabelMe", "Image Augmentation",
+    "Custom Dataset Construction", "FFmpeg", "Face Alignment", "Liveness Detection", "Fiducial Markers"
+  ],
+  cloudBackend: [
+    "FastAPI", "RESTful API Development", "Supabase", "Google Cloud Run", "Firebase", "Vercel",
+    "GitHub Pages CI/CD", "Docker", "Authentication & Authorization", "JWT", "Model Deployment"
+  ],
+  mlopsOptimization: [
+    "ONNX Runtime", "Intel OpenVINO", "Post-Training Quantization", "CUDA", "Conda",
+    "Linux (Ubuntu)", "Bash / Shell Scripting", "Gradio", "Streamlit", "Web Scraping"
+  ],
+  programmingDatabases: [
+    "Python", "Java", "Scala", "JavaScript", "HTML", "React", "Next.js", "Tailwind CSS",
+    "SQL (Oracle, MySQL)", "MongoDB", "Cassandra", "InfluxDB", "Object-Oriented Programming",
+    "Algorithms & Data Structures", "Data Pipelines", "Git", "GitHub", "Power BI"
+  ],
+  hardwareRobotics: [
+    "UAV Assembly", "Circuit Board Integration", "Flight Controller Tuning"
+  ]
 };
 
 export const industryExperience: ExperienceItem[] = [

@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'motion/react';
 import React, { useState } from 'react';
-import { GraduationCap, Award, BookOpen, Briefcase, ChevronRight, ChevronLeft, ZoomIn, CheckCircle, Cpu, HardDrive, Database, Code, Globe, Terminal, Layers } from 'lucide-react';
+import { GraduationCap, Award, BookOpen, Briefcase, ChevronRight, ChevronLeft, ZoomIn, CheckCircle, Cpu, HardDrive, Database, Code, Globe, Terminal, Layers, Cloud, Server, Wrench, Eye } from 'lucide-react';
 import { educationHistory, skillsData } from '../data';
 
 interface AboutTabProps {
@@ -8,8 +8,6 @@ interface AboutTabProps {
 }
 
 export default function AboutTab({ onOpenLightbox }: AboutTabProps) {
-  const [activeMilestone, setActiveMilestone] = useState<string | null>("spm");
-
   React.useEffect(() => {
     if (sessionStorage.getItem('scrollToEducationGallery') === 'true') {
       sessionStorage.removeItem('scrollToEducationGallery');
@@ -23,66 +21,6 @@ export default function AboutTab({ onOpenLightbox }: AboutTabProps) {
       return () => clearTimeout(timer);
     }
   }, []);
-
-  // Timeline events representing her story (exact content as requested)
-  const timelineEvents = [
-    {
-      id: "spm",
-      year: "2017 - 2022",
-      title: "Sijil Pelajaran Malaysia (SPM)",
-      cardText: "SMK Yong Peng. 10As.",
-      deepDiveText: "Graduated as Top Achiever. Specialized in the Technical Science Stream with a focus on Computer Science and Advanced Mathematics.",
-      icon: Award,
-    },
-    {
-      id: "foundation",
-      year: "2022 - 2023",
-      title: "Foundation in Science & Technology",
-      cardText: "Sunway College KL. CGPA 4.00 / 4.00.",
-      deepDiveText: "Awarded the Sunway University President's Award as the highest-scoring student.",
-      icon: GraduationCap,
-    },
-    {
-      id: "degree",
-      year: "2023 - 2026",
-      title: "BSc (Honours) in Computer Science",
-      cardText: "Sunway University. CGPA 3.98 / 4.00.",
-      deepDiveText: "Jeffrey Cheah Foundation (JCF) Scholar (100% Tuition Fee Waiver).",
-      icon: GraduationCap,
-    },
-    {
-      id: "research",
-      year: "2024 - 2026",
-      title: "Research Assistant",
-      cardText: "HUMAC Research Centre. UAV Flood Response.",
-      deepDiveText: "Custom drone assembly and algorithm benchmarking across YOLO, Faster R-CNN, and DETR for real-time applications.",
-      icon: BookOpen,
-    },
-    {
-      id: "publications",
-      year: "2025 - 2026",
-      title: "Academic Publications",
-      cardText: "Co-first Author. Q2 Journal.",
-      deepDiveText: "Co-first authored a systematic review on Drone Integration in Smart City Traffic Management (Journal of Electrical and Computer Engineering, 2026).",
-      icon: BookOpen,
-    },
-    {
-      id: "internship",
-      year: "2026",
-      title: "AI Engineer Intern",
-      cardText: "WISE AI Malaysia. 40% Inferencing Gain.",
-      deepDiveText: "Engineered MLOps pipelines and achieved a 40% inference speed gain via Post-Training Quantization (ONNX/OpenVINO), ensuring accuracy loss remained within the strict tolerable threshold (evaluating dips as severe only if > -1.5%).",
-      icon: Briefcase,
-    },
-    {
-      id: "phd",
-      year: "2026 ONWARDS",
-      title: "Future PhD Candidate",
-      cardText: "Direct PhD Computing. Sunway University.",
-      deepDiveText: "Preparing to transition research focus toward Vision-Language Models (VLMs) and hybrid multi-modal frameworks for intelligent traffic reasoning.",
-      icon: Cpu,
-    }
-  ];
 
   // Professional research interest pills with high-contrast elegant layouts
   const researchInterests = [
@@ -102,27 +40,51 @@ export default function AboutTab({ onOpenLightbox }: AboutTabProps) {
     {
       category: "Machine Learning & Deep Learning",
       icon: Cpu,
-      skills: ["PyTorch", "TensorFlow", "Scikit-Learn", "YOLOv8/10/11/26", "Faster R-CNN", "DETR", "MobileNet", "Vision-Language Models (VLMs)", "Qwen-VL", "NumPy", "Pandas", "SciPy", "Matplotlib", "Transfer Learning", "Hyperparameter Tuning"]
+      skills: [
+        "PyTorch", "TensorFlow", "Scikit-learn", "YOLOv8/10/11/26", "Faster R-CNN", "DETR", "MobileNet",
+        "Vision-Language Models (VLMs)", "Qwen-VL", "Transfer Learning", "Hyperparameter Tuning",
+        "NumPy", "Pandas", "SciPy", "Matplotlib"
+      ]
     },
     {
-      category: "Computer Vision & Visual Curation",
+      category: "Computer Vision & Visual Computing",
       icon: Layers,
-      skills: ["OpenCV", "MediaPipe", "Roboflow", "LabelMe", "Image Augmentation", "Custom Dataset Construction", "FFmpeg", "Face Alignment", "Liveness Detection", "Fiducial Markers"]
+      skills: [
+        "OpenCV", "MediaPipe", "Roboflow", "LabelMe", "Image Augmentation",
+        "Custom Dataset Construction", "FFmpeg", "Face Alignment", "Liveness Detection", "Fiducial Markers"
+      ]
     },
     {
-      category: "MLOps, DevOps & Edge Optimization",
-      icon: HardDrive,
-      skills: ["FastAPI", "Gradio", "Streamlit", "Post-Training Quantization", "Intel OpenVINO", "ONNX Runtime", "Web Scraping", "Bash / Shell Scripting", "Docker", "Conda", "Linux (Ubuntu)", "CUDA Allocation"]
+      category: "Cloud, Backend & Deployment",
+      icon: Cloud,
+      skills: [
+        "FastAPI", "RESTful API Development", "Supabase", "Google Cloud Run", "Firebase", "Vercel",
+        "GitHub Pages CI/CD", "Docker", "Authentication & Authorization", "JWT", "Model Deployment"
+      ]
     },
     {
-      category: "Programming, Web & Databases",
+      category: "MLOps, AI Deployment & Optimization",
+      icon: Terminal,
+      skills: [
+        "ONNX Runtime", "Intel OpenVINO", "Post-Training Quantization", "CUDA", "Conda",
+        "Linux (Ubuntu)", "Bash / Shell Scripting", "Gradio", "Streamlit", "Web Scraping"
+      ]
+    },
+    {
+      category: "Programming, Software Engineering & Databases",
       icon: Code,
-      skills: ["Python", "Java", "Scala", "React & Next.js", "Tailwind CSS", "JavaScript", "HTML", "SQL (Oracle, MySQL)", "MongoDB (NoSQL)", "Cassandra (NoSQL)", "InfluxDB (Time-Series)", "Data Pipelines", "PowerBI"]
+      skills: [
+        "Python", "Java", "Scala", "JavaScript", "HTML", "React", "Next.js", "Tailwind CSS",
+        "SQL (Oracle, MySQL)", "MongoDB", "Cassandra", "InfluxDB", "Object-Oriented Programming",
+        "Algorithms & Data Structures", "Data Pipelines", "Git", "GitHub", "Power BI"
+      ]
     },
     {
-      category: "Hardware & Physical Cloud",
-      icon: Globe,
-      skills: ["UAV Assembly", "Circuit Board Integration", "Flight Control Tuning", "Google Cloud Run", "Supabase Backend APIs", "Github Pages CI/CD", "Vercel", "Firebase"]
+      category: "Hardware, Robotics & Physical Systems",
+      icon: Wrench,
+      skills: [
+        "UAV Assembly", "Circuit Board Integration", "Flight Controller Tuning"
+      ]
     }
   ];
 
@@ -231,7 +193,18 @@ export default function AboutTab({ onOpenLightbox }: AboutTabProps) {
                     <span className="block text-[10px] font-mono font-bold text-amber-800 uppercase tracking-wider mb-1">
                       Academic Distinction / Scholarship Awarded
                     </span>
-                    <p className="text-xs font-semibold text-amber-900">{edu.honor}</p>
+                    {edu.id === 'edu-degree' ? (
+                      <ul className="list-disc pl-5 space-y-1 text-xs font-semibold text-amber-900">
+                        <li>
+                          <strong>JCF Scholarship:</strong> 100% Tuition Fee Waiver for outstanding academic performance.
+                        </li>
+                        <li>
+                          <strong>Top of Cohort:</strong> Tan Sri Dato' Seri Dr Jeffrey Cheah Scholastic Award (Top in CS) &amp; Lancaster University Chancellor's Medal (Top in Faculty of Engineering &amp; Technology).
+                        </li>
+                      </ul>
+                    ) : (
+                      <p className="text-xs font-semibold text-amber-900">{edu.honor}</p>
+                    )}
                   </div>
                 )}
 
@@ -453,7 +426,7 @@ export default function AboutTab({ onOpenLightbox }: AboutTabProps) {
                 <SpmDocumentShowcase onOpenLightbox={onOpenLightbox} degreeTitle={edu.degree} />
               ) : (
                 edu.imagePath && (
-                  <div className="lg:col-span-4 flex flex-col justify-start items-center w-full max-w-[340px] mx-auto">
+                  <div className="lg:col-span-4 flex flex-col justify-center items-center w-full max-w-[340px] mx-auto self-center my-auto">
                     <div
                       onClick={() => onOpenLightbox(edu.imagePath!, `${edu.degree} - ${edu.honor || edu.institution}`)}
                       className="group relative overflow-hidden rounded-xl border border-slate-250 bg-slate-50 p-1 cursor-zoom-in shadow-xs hover:shadow-md transition-shadow w-full aspect-[1/1.414]"
@@ -487,142 +460,7 @@ export default function AboutTab({ onOpenLightbox }: AboutTabProps) {
         </div>
       </section>
 
-      {/* SECTION 2: Interactive Personal Story Timeline */}
-      <section id="interactive-horizontal-timeline" className="space-y-6">
-        <div className="border-b border-slate-200 pb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-          <div>
-            <h3 className="text-xl font-extrabold text-slate-900">Interactive Journey Roadmap</h3>
-            <p className="text-xs text-slate-500">Explore core milestones across my academic achievements and industrial research projects</p>
-          </div>
-          {/* Subtle pulsating interaction hint */}
-          <div className="flex items-center gap-1.5 text-xs text-accent font-semibold bg-accent-light/50 border border-accent-border/40 px-3.5 py-1.5 rounded-full shadow-xs animate-pulse font-sans">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
-            </span>
-            <span>✨ Click on any milestone card below to explore full details.</span>
-          </div>
-        </div>
-
-        {/* Scrollable Horizontal Layout Column with Uniform Height stretched logic */}
-        <div className="relative w-full overflow-x-auto pb-4 pt-4 -mx-4 px-4 scrollbar-thin scrollbar-track-slate-50 scrollbar-thumb-slate-200">
-          {/* Horizontal joining line behind items */}
-          <div className="absolute top-[28px] left-[3%] right-[3%] h-[2px] bg-slate-200 z-0 hidden md:block" />
-
-          <div className="flex flex-row items-stretch gap-6 min-w-[1200px] lg:min-w-0 lg:justify-between relative z-10">
-            {timelineEvents.map((evt) => {
-              const EvtIcon = evt.icon;
-              const isSelected = activeMilestone === evt.id;
-              return (
-                <div key={evt.id} className="flex-1 min-w-[280px] lg:min-w-0 flex flex-col items-center">
-                  
-                  {/* Timeline chronological marker */}
-                  <button
-                    onClick={() => setActiveMilestone(evt.id)}
-                    className="flex flex-col items-center mb-5 focus:outline-hidden group select-none cursor-pointer"
-                  >
-                    <span className="block text-[10px] font-mono font-black text-accent uppercase tracking-widest mb-2 transition-transform duration-300 group-hover:scale-105">
-                      {evt.year}
-                    </span>
-                    <div 
-                      className={`flex h-10 w-10 items-center justify-center rounded-full bg-white border-2 transition-all duration-300 ${
-                        isSelected 
-                          ? 'border-accent ring-4 ring-accent/15 scale-110 shadow-xs' 
-                          : 'border-slate-200 group-hover:border-slate-400 group-hover:bg-slate-50'
-                      }`}
-                    >
-                      <EvtIcon className={`h-4.5 w-4.5 ${isSelected ? 'text-accent' : 'text-slate-400'}`} />
-                    </div>
-                  </button>
-
-                  {/* Stretch clickable element using flex-1 h-full */}
-                  <div 
-                    onClick={() => setActiveMilestone(evt.id)}
-                    className={`w-full flex-1 flex flex-col h-full justify-between p-5 bg-white border rounded-2xl shadow-xs transition-all duration-300 cursor-pointer select-none ${
-                      isSelected 
-                        ? 'border-accent ring-2 ring-accent/10 bg-accent-light/5'
-                        : 'border-slate-200 hover:border-accent/40 hover:-translate-y-1 hover:shadow-md'
-                    }`}
-                  >
-                    {/* Consistent Internal Grid / Alignment distributions */}
-                    <div className="flex flex-col h-full justify-between text-left">
-                      <div>
-                        <h5 className="font-bold text-slate-900 text-xs sm:text-sm tracking-tight leading-snug">
-                          {evt.title}
-                        </h5>
-                        <p className="text-xs text-slate-500 mt-2 font-medium leading-relaxed">
-                          {evt.cardText}
-                        </p>
-                      </div>
-
-                      {/* Explicit Interactive Footer of each card */}
-                      <div className="pt-3 mt-4 border-t border-slate-100 flex items-center justify-between text-[11px] font-mono font-bold text-slate-400">
-                        <span className={isSelected ? 'text-accent font-black' : 'text-slate-400'}>
-                          {isSelected ? 'Active Selection' : 'Read Deep-Dive'}
-                        </span>
-                        <ChevronRight className={`h-3.5 w-3.5 transition-transform ${isSelected ? 'translate-x-1 text-accent' : 'text-slate-300'}`} />
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Dynamic Timeline Detail Display Panel / Deep-Dive Panel with smooth entrance */}
-        <div className="relative min-h-[140px]">
-          <AnimatePresence mode="wait">
-            {activeMilestone ? (
-              <motion.div
-                key={activeMilestone}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
-                className="rounded-2xl bg-accent-light border border-accent-border/50 p-6 space-y-3.5 shadow-inner"
-              >
-                <div className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-accent animate-ping"></span>
-                  <span className="font-mono text-xs uppercase tracking-widest text-slate-500 font-bold">Roadmap Milestones Deep-Dive</span>
-                </div>
-                <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-                  <span>{timelineEvents.find(e => e.id === activeMilestone)?.title}</span>
-                  <span className="text-slate-400 font-normal">|</span>
-                  <span className="text-xs font-mono font-bold bg-white text-accent px-2.5 py-1 rounded-md border border-slate-200">
-                    {timelineEvents.find(e => e.id === activeMilestone)?.year}
-                  </span>
-                </h4>
-                <p className="text-sm text-slate-700 leading-relaxed font-sans max-w-4xl">
-                  {timelineEvents.find(e => e.id === activeMilestone)?.deepDiveText}
-                </p>
-              </motion.div>
-            ) : (
-              <motion.div
-                key="default-prompt"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
-                className="rounded-2xl bg-slate-50 border border-slate-200/60 p-6 flex flex-col items-center justify-center text-center space-y-3 shadow-xs"
-              >
-                <div className="flex flex-col items-center gap-2">
-                  <span className="text-2xl animate-bounce">✨</span>
-                  <p className="text-sm font-semibold text-slate-600 animate-pulse">
-                    Click on any milestone card above to explore full details.
-                  </p>
-                  <p className="text-xs text-slate-400 max-w-md">
-                    Toggle through each phase of my scientific, publication, and AI R&D timeline for detailed metrics and field deployment metrics.
-                  </p>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </section>
-
-      {/* SECTION 3: Research Interests Glowing Grid */}
+      {/* SECTION 2: Research Interests Glowing Grid */}
       <section id="research-interests-grid" className="space-y-6">
         <div className="border-b border-slate-200 pb-3">
           <h3 className="text-xl font-extrabold text-slate-900 font-sans">Research Interests Mapping</h3>
@@ -662,13 +500,15 @@ export default function AboutTab({ onOpenLightbox }: AboutTabProps) {
             let badgeColors = "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100 hover:shadow-sm";
             if (section.category === "Machine Learning & Deep Learning") {
               badgeColors = "bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100/80 hover:shadow-sm";
-            } else if (section.category === "Computer Vision & Visual Curation") {
+            } else if (section.category === "Computer Vision & Visual Computing") {
               badgeColors = "bg-purple-50 text-purple-700 border-purple-200 hover:bg-purple-100/80 hover:shadow-sm";
-            } else if (section.category === "MLOps, DevOps & Edge Optimization") {
+            } else if (section.category === "Programming, Software Engineering & Databases") {
+              badgeColors = "bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100/80 hover:shadow-sm";
+            } else if (section.category === "Cloud, Backend & Deployment") {
+              badgeColors = "bg-sky-50 text-sky-700 border-sky-200 hover:bg-sky-100/80 hover:shadow-sm";
+            } else if (section.category === "MLOps, AI Deployment & Optimization") {
               badgeColors = "bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-100/80 hover:shadow-sm";
-            } else if (section.category === "Programming, Web & Databases") {
-              badgeColors = "bg-orange-50 text-orange-700 border-orange-200 hover:bg-orange-100/80 hover:shadow-sm";
-            } else if (section.category === "Hardware & Physical Cloud") {
+            } else if (section.category === "Hardware, Robotics & Physical Systems") {
               badgeColors = "bg-rose-50 text-rose-700 border-rose-200 hover:bg-rose-100/80 hover:shadow-sm";
             }
 
@@ -737,7 +577,7 @@ function EducationDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLigh
   };
 
   return (
-    <div className="lg:col-span-4 flex flex-col justify-start items-center w-full max-w-[340px] mx-auto space-y-4">
+    <div className="lg:col-span-4 flex flex-col justify-center items-center w-full max-w-[340px] mx-auto space-y-4 self-center my-auto">
       {/* The Image Frame */}
       <div
         onClick={() => onOpenLightbox(getRenderPath(activeImagePath), `${degreeTitle} - ${getLabel()}`)}
@@ -840,7 +680,7 @@ function FistDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLightbox:
   };
 
   return (
-    <div className="lg:col-span-4 flex flex-col justify-start items-center w-full max-w-[340px] mx-auto space-y-4">
+    <div className="lg:col-span-4 flex flex-col justify-center items-center w-full max-w-[340px] mx-auto space-y-4 self-center my-auto">
       {/* The Image Frame */}
       <div
         onClick={() => onOpenLightbox(getRenderPath(activeImagePath), `${degreeTitle} - ${getLabel()}`)}
@@ -940,7 +780,7 @@ function SpmDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLightbox: 
   };
 
   return (
-    <div className="lg:col-span-4 flex flex-col justify-start items-center w-full max-w-[340px] mx-auto space-y-4">
+    <div className="lg:col-span-4 flex flex-col justify-center items-center w-full max-w-[340px] mx-auto space-y-4 self-center my-auto">
       {/* The Image Frame - maintaining large, rounded container with subtle shadow */}
       <div
         onClick={() => onOpenLightbox(getRenderPath(activeImagePath), `${degreeTitle} - ${getLabel()}`)}
@@ -1023,7 +863,7 @@ function SpmDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLightbox: 
           onClick={() => selectCategory('spm')}
           className={`flex-1 py-1 px-0.5 text-[11px] font-bold rounded-md transition-all cursor-pointer text-center ${
             activeCategory === 'spm'
-              ? 'bg-slate-900 text-white shadow-xs'
+              ? 'bg-accent-dark text-white shadow-xs'
               : 'text-slate-600 hover:bg-slate-200'
           }`}
         >
@@ -1033,7 +873,7 @@ function SpmDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLightbox: 
           onClick={() => selectCategory('cefr')}
           className={`flex-1 py-1 px-0.5 text-[11px] font-bold rounded-md transition-all cursor-pointer text-center ${
             activeCategory === 'cefr'
-              ? 'bg-slate-900 text-white shadow-xs'
+              ? 'bg-accent-dark text-white shadow-xs'
               : 'text-slate-600 hover:bg-slate-200'
           }`}
         >
@@ -1043,7 +883,7 @@ function SpmDocumentShowcase({ onOpenLightbox, degreeTitle }: { onOpenLightbox: 
           onClick={() => selectCategory('robotics')}
           className={`flex-1 py-1 px-0.5 text-[11px] font-bold rounded-md transition-all cursor-pointer text-center ${
             activeCategory === 'robotics'
-              ? 'bg-slate-900 text-white shadow-xs'
+              ? 'bg-accent-dark text-white shadow-xs'
               : 'text-slate-600 hover:bg-slate-200'
           }`}
         >
