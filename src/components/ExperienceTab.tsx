@@ -304,8 +304,8 @@ export default function ExperienceTab({ onOpenLightbox, setActiveTab }: Experien
             {/* Right side media showcase: Vertically Scrollable Image Stack aligned with WISE AI */}
             <div className="lg:col-span-5 flex flex-col justify-start items-center w-full min-w-0">
               <div className="w-full max-w-[440px] lg:max-w-full flex flex-col items-center">
-                {/* Scrollable vertical container matching left text height */}
-                <div className="w-full max-h-[460px] lg:max-h-[490px] overflow-y-auto pr-2 space-y-3.5 scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-slate-100 rounded-xl">
+                {/* Scrollable vertical container matching left text height with accent mauve/purple scrollbar matching the Connect button */}
+                <div className="w-full max-h-[460px] lg:max-h-[490px] overflow-y-auto pr-2.5 space-y-3.5 rounded-xl [&::-webkit-scrollbar]:w-2.5 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-track]:bg-[#f6f3f7] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#9d8ba5] hover:[&::-webkit-scrollbar-thumb]:bg-[#897891] [scrollbar-color:#9d8ba5_#f6f3f7] [scrollbar-width:auto]">
                   {tutoringImages.map((img, tIdx) => (
                     <div
                       key={tIdx}
@@ -337,12 +337,12 @@ export default function ExperienceTab({ onOpenLightbox, setActiveTab }: Experien
                 </div>
 
                 {/* Subtitle / scroll hint */}
-                <div className="flex items-center justify-between w-full px-2 mt-2.5 text-[11px] text-slate-400 font-medium select-none">
-                  <span className="flex items-center gap-1 text-slate-500">
-                    <span>Scroll for more lessons</span>
-                    <span>⬇️</span>
+                <div className="flex items-center justify-between w-full px-2 mt-2.5 text-[11px] text-slate-500 font-medium select-none">
+                  <span className="inline-flex items-center gap-1.5 font-semibold text-slate-700 bg-accent-light px-2.5 py-0.5 rounded-full border border-accent-border">
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
+                    <span>Scroll for more lessons ⬇</span>
                   </span>
-                  <span>5 Whiteboard Proofs &bull; Click to zoom</span>
+                  <span className="text-slate-400">5 Proofs &bull; Click to zoom</span>
                 </div>
               </div>
             </div>
