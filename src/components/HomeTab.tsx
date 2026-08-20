@@ -219,7 +219,7 @@ export default function HomeTab({ onOpenLightbox, setActiveTab }: HomeTabProps) 
               <div className="absolute inset-0 z-10 bg-transparent" />
 
               <img
-                src="./3d_avatar.png"
+                src="./3d_avatar.jpeg"
                 alt="Zi Xuan Lim"
                 referrerPolicy="no-referrer"
                 className="h-80 w-80 sm:h-96 sm:w-96 rounded-xl object-cover select-none pointer-events-none"
@@ -230,12 +230,6 @@ export default function HomeTab({ onOpenLightbox, setActiveTab }: HomeTabProps) 
                   e.currentTarget.src = 'https://picsum.photos/seed/zixuan/600/600';
                 }}
               />
-              <div className="absolute bottom-4 left-4 right-4 rounded-xl bg-black/40 backdrop-blur-md p-3 border border-white/10 text-white shadow-lg z-20">
-                <p className="text-sm font-bold tracking-wide">Zi Xuan Lim</p>
-                <div className="flex justify-between items-center text-[10px] text-slate-200">
-                  <span>Sunway CS Alumna</span>
-                </div>
-              </div>
             </div>
           </div>
         </div>
