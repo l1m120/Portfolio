@@ -120,7 +120,7 @@ export default function App() {
                 <ProductsTab />
               )}
               {activeTab === 'experience' && (
-                <ExperienceTab onOpenLightbox={handleOpenLightbox} />
+                <ExperienceTab onOpenLightbox={handleOpenLightbox} setActiveTab={setActiveTab} />
               )}
               {activeTab === 'contact' && (
                 <ContactTab />

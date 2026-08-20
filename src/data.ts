@@ -25,6 +25,23 @@ export const skillsData = {
 
 export const industryExperience: ExperienceItem[] = [
   {
+    id: "flyrank-ai",
+    role: "Backend AI Engineering Intern",
+    organization: "FlyRank AI",
+    location: "Remote",
+    duration: "July 2026 – Present",
+    metrics: [
+      { label: "CORE FOCUS", value: "Backend & MCP" },
+      { label: "FRAMEWORKS", value: "FastAPI & Docker" },
+      { label: "AI DEPLOYMENT", value: "PyTorch & Agents" }
+    ],
+    bullets: [
+      "API Architecture & Model Integration: Engineered robust backend API architectures to facilitate the seamless integration of advanced AI models.",
+      "Model Context Protocol (MCP) Optimization: Developed and optimized Model Context Protocol (MCP) servers, establishing secure and efficient context exchange mechanisms for autonomous AI agents.",
+      "Scalable Deployment Stack: Leveraged a modern deployment stack including Docker, FastAPI, and PyTorch to ensure highly scalable and reliable backend operations."
+    ]
+  },
+  {
     id: "wise-ai",
     role: "AI Engineer Intern",
     organization: "WISE AI Malaysia Sdn. Bhd.",
@@ -42,6 +59,28 @@ export const industryExperience: ExperienceItem[] = [
       "AutoML & MLOps Infrastructure: Designed a FastAPI-based backend for automated data ingestion and model preprocessing workflows specifically tailored for facial image datasets. Managed environment containerization and GPU resource allocation within Linux ecosystems using Docker.",
       "Edge Optimization & High-Speed Deployment: Implemented Post-Training Quantization (PTQ) using FP16 and INT8 formats to optimize heavy face quality models for deployment via ONNX and OpenVINO, achieving a 40% gain in inference speed.",
       "Team Mentorship & eKYC Pipelines: Supervised and mentored an incoming intern, providing comprehensive training and direction on complex data annotation pipelines for ID fraud detection, face liveness, and eKYC systems."
+    ]
+  }
+];
+
+export const teachingExperience: ExperienceItem[] = [
+  {
+    id: "golearn",
+    role: "Computer Science Tutor",
+    organization: "GoLearn Education Sdn. Bhd.",
+    location: "Remote",
+    duration: "June 2026 – Present",
+    metrics: [
+      { label: "DELIVERY FORMAT", value: "1-on-1" },
+      { label: "SYLLABI", value: "IGCSE & SPM" },
+      { label: "CORE FOCUS", value: "Agorithm & Code" }
+    ],
+    bullets: [
+      "Syllabus Mentorship & Cohort Guidance: Mentored secondary school students across IGCSE (CAIE) and SPM (KPM) Computer Science curricula, covering programming fundamentals, algorithms, computational thinking, and core computer science theory.",
+      "Visual Digital Whiteboard Instruction: Transformed complex theoretical concepts into accessible, highly visual lessons using diagrams, flowcharts, worked examples, and step-by-step demonstrations to accelerate beginner comprehension.",
+      "Practical Programming & Web Development: Bridged theory with practical application through hands-on exercises in Python, Java, Scratch, and HTML, guiding students through programming fundamentals, algorithmic problem-solving, debugging, and basic web development.",
+      "Technical Communication: Developed the ability to translate complex computer science concepts into clear, intuitive explanations for learners with varying levels of technical proficiency.",
+      "Assessment & Examination Preparation: Designed syllabus-aligned revision materials, coding tasks, and practice questions to strengthen students’ technical understanding and prepare them for IGCSE and SPM assessments."
     ]
   }
 ];
@@ -293,10 +332,10 @@ export const honorsAwards: AwardItem[] = [
     id: "award-presidents-award",
     title: "Sunway University President’s Award",
     event: "Foundation in Science & Technology Graduation",
-    issuer: "Sunway College Kuala Lumpur",
+    issuer: "Sunway College Kuala Lumpur / Sunway University",
     year: "March 2023",
     category: "academic",
-    badge: "Highest Scorer",
+    badge: "Valedictorian / Highest Scorer",
     description: "Awarded the Sunway University President's Award presented to the highest scoring graduating student across the entire Foundation in Science and Technology (FIST) cohort, graduating with a perfect CGPA of 4.00/4.00.",
     images: [
       { path: "./FIST Presidents Award.jpg", label: "President's Award Certificate" }

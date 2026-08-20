@@ -1,19 +1,28 @@
-import { Briefcase, FlaskConical, ExternalLink, Tag, Github, ArrowUpRight, Zap, Target, Layout, ZoomIn, CheckCircle, Server, Users } from 'lucide-react';
-import { industryExperience, researchExperience, CVProjects, independentProjects } from '../data';
+import { Briefcase, FlaskConical, ExternalLink, Tag, Github, ArrowUpRight, Zap, Target, Layout, ZoomIn, CheckCircle, Server, Users, Database, Cpu, Network, Terminal, Code2, Layers, ArrowRight, BookOpen, FileText, Sparkles, GraduationCap } from 'lucide-react';
+import { industryExperience, teachingExperience, researchExperience, CVProjects, independentProjects } from '../data';
 import { motion } from 'motion/react';
 import { useState, useEffect } from 'react';
 
 interface ExperienceTabProps {
   onOpenLightbox: (src: string, alt: string) => void;
+  setActiveTab?: (tab: 'home' | 'about' | 'honors' | 'research' | 'products' | 'experience' | 'contact') => void;
 }
 
-export default function ExperienceTab({ onOpenLightbox }: ExperienceTabProps) {
+export default function ExperienceTab({ onOpenLightbox, setActiveTab }: ExperienceTabProps) {
   const [expandedProjectId, setExpandedProjectId] = useState<string | null>(null);
   const [wiseAiImgIdx, setWiseAiImgIdx] = useState(0);
   const [stcImgIdx, setStcImgIdx] = useState(0);
 
   const wiseAiImages = ["./WISE AI.jpeg", "./WISE AI 2.jpeg"];
   const stcImages = ["./STC grp1.jpeg", "./STC grp2.jpeg"];
+
+  const tutoringImages = [
+    { src: "./tutoring-python.jpg", fallback: "./tutoring-python.jpeg", label: "Python Coding Exercises" },
+    { src: "./tutoring-ascii.jpg", fallback: "./tutoring-ascii.png", label: "ASCII & Data Theory" },
+    { src: "./tutoring-java.jpg", fallback: "./tutoring-java.jpg", label: "Java Programming Labs" },
+    { src: "./tutoring-hex.jpg", fallback: "./tutoring-hex.png", label: "Hexadecimal Whiteboard" },
+    { src: "./tutoring-adc.png", fallback: "./tutoring-adc.png", label: "Analogue-to-Digital (ADC) Theory" },
+  ];
 
   useEffect(() => {
     const timer1 = setInterval(() => {
@@ -32,17 +41,17 @@ export default function ExperienceTab({ onOpenLightbox }: ExperienceTabProps) {
 
   return (
     <div id="experience-tab-container" className="space-y-16 py-4">
-      {/* SECTION 1: Industry Experience */}
+      {/* SECTION 1: Industry Engineering Experience */}
       <section id="industry-experience-section" className="space-y-8">
         <div className="border-b border-slate-200 pb-4">
           <h2 className="flex items-center gap-2.5 text-2xl font-extrabold tracking-tight text-slate-900">
             <Briefcase className="h-6 w-6 text-accent" />
-            Industry Experience
+            Industry Engineering Experience
           </h2>
-          <p className="text-sm text-slate-500 mt-1">Field internships and commercial enterprise development roles</p>
+          <p className="text-sm text-slate-500 mt-1">Field internships, production AI architectures, and commercial software engineering roles</p>
         </div>
 
-        {industryExperience.map((exp, expIdx) => (
+        {industryExperience.map((exp) => (
           <div
             key={exp.id}
             id={`experience-card-${exp.id}`}
@@ -64,11 +73,11 @@ export default function ExperienceTab({ onOpenLightbox }: ExperienceTabProps) {
             </div>
 
             {/* Left side details */}
-            <div className={`${exp.id === 'wise-ai' ? 'lg:col-span-7' : 'lg:col-span-8'} lg:self-center space-y-6`}>
+            <div className="lg:col-span-7 lg:self-center space-y-6">
 
               {/* Sub-metrics inside the experience block */}
               {exp.metrics && (
-                <div id="internship-metrics" className="grid grid-cols-3 gap-3 bg-stone-50 p-4 rounded-xl border border-slate-100/80">
+                <div id={`metrics-${exp.id}`} className="grid grid-cols-3 gap-3 bg-stone-50 p-4 rounded-xl border border-slate-100/80">
                   {exp.metrics.map((m, key) => (
                     <div key={key} className="text-center">
                       <span className="block font-mono text-base font-extrabold text-slate-900">{m.value}</span>
@@ -97,101 +106,241 @@ export default function ExperienceTab({ onOpenLightbox }: ExperienceTabProps) {
               </ul>
             </div>
 
-            {/* Right side image framed with zoom capabilities */}
-            {exp.imagePath && (
-              <div className={`${exp.id === 'wise-ai' ? 'lg:col-span-5 lg:self-center' : 'lg:col-span-4'} flex flex-col justify-start items-center`}>
-                {exp.id === 'wise-ai' ? (
-                  <div className="w-full max-w-[440px] lg:max-w-full flex flex-col items-center">
-                    <div
-                      onClick={() => onOpenLightbox(wiseAiImages[wiseAiImgIdx], `${exp.role} at ${exp.organization} - Image ${wiseAiImgIdx + 1}`)}
-                      className="group relative overflow-hidden rounded-xl border-2 border-slate-200/80 bg-slate-50 p-1.5 cursor-zoom-in shadow-sm hover:shadow-lg hover:border-accent/40 transition-all duration-300 w-full aspect-[4/3] flex items-center justify-center"
-                      title="Click to expand cert/photo"
-                    >
-                      <motion.img
-                        key={wiseAiImgIdx}
-                        initial={{ opacity: 0.85, scale: 0.98 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.4 }}
-                        src={wiseAiImages[wiseAiImgIdx]}
-                        alt={`${exp.role} Internship Showcase ${wiseAiImgIdx + 1}`}
-                        referrerPolicy="no-referrer"
-                        className="h-full w-full object-cover rounded-lg transition-transform duration-300 group-hover:scale-[1.03]"
-                        onError={(e) => {
-                          e.currentTarget.src = wiseAiImgIdx === 0 ? 'https://picsum.photos/seed/wise1/500/375' : 'https://picsum.photos/seed/wise2/500/375';
-                        }}
-                      />
-                      <div className="absolute top-3 right-3 rounded-full bg-black/60 backdrop-blur-md p-1.5 text-white opacity-0 group-hover:opacity-100 transition-opacity z-10">
-                        <ZoomIn className="h-4 w-4" />
+            {/* Right side media showcase */}
+            <div className="lg:col-span-5 lg:self-center flex flex-col justify-start items-center">
+              {/* FlyRank AI: Remote Architecture Diagram UI Box */}
+              {exp.id === 'flyrank-ai' && (
+                <div className="w-full max-w-[440px] lg:max-w-full flex flex-col items-center">
+                  <div
+                    className="w-full aspect-[4/3] rounded-xl border-2 border-dashed border-slate-200/90 bg-slate-50/90 p-5 flex flex-col justify-between shadow-xs hover:border-accent/40 hover:bg-slate-50 transition-all duration-300 relative overflow-hidden"
+                  >
+                    {/* Diagram Top Bar */}
+                    <div className="flex items-center justify-between border-b border-slate-200/70 pb-3">
+                      <div className="flex items-center gap-2">
+                        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-accent/15 text-accent border border-accent/20">
+                          <Server className="h-4 w-4" />
+                        </div>
+                        <div>
+                          <span className="block text-xs font-bold text-slate-800">Backend API Architecture</span>
+                          <span className="block text-[10px] font-mono text-slate-400">FastAPI &bull; Docker &bull; PyTorch</span>
+                        </div>
+                      </div>
+                      <span className="inline-flex items-center gap-1 text-[10px] font-mono font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                        Active MCP
+                      </span>
+                    </div>
+
+                    {/* Architecture Nodes Layout */}
+                    <div className="grid grid-cols-3 gap-2 items-center my-auto py-2">
+                      {/* Node 1 */}
+                      <div className="flex flex-col items-center p-2.5 rounded-lg bg-white border border-slate-200/90 shadow-2xs text-center">
+                        <Terminal className="h-4 w-4 text-accent mb-1" />
+                        <span className="text-[10px] font-bold text-slate-800">FastAPI Server</span>
+                        <span className="text-[8px] font-mono text-slate-400">REST Endpoints</span>
+                      </div>
+
+                      {/* Connector */}
+                      <div className="flex flex-col items-center justify-center">
+                        <span className="text-[9px] font-mono font-bold text-accent px-1.5 py-0.5 rounded bg-accent/10 border border-accent/20 whitespace-nowrap">
+                          MCP Protocol
+                        </span>
+                        <div className="w-full h-0.5 bg-dashed border-t-2 border-dashed border-accent/40 my-1" />
+                        <span className="text-[8px] font-mono text-slate-400 text-center">Context Flow</span>
+                      </div>
+
+                      {/* Node 2 */}
+                      <div className="flex flex-col items-center p-2.5 rounded-lg bg-white border border-slate-200/90 shadow-2xs text-center">
+                        <Database className="h-4 w-4 text-accent mb-1" />
+                        <span className="text-[10px] font-bold text-slate-800">AI Agents</span>
+                        <span className="text-[8px] font-mono text-slate-400">PyTorch Runtime</span>
                       </div>
                     </div>
-                    
-                    {/* Sliding indicator dots */}
-                    <div className="flex gap-2 mt-3 z-10">
-                      {wiseAiImages.map((_, i) => (
-                        <button
-                          key={i}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setWiseAiImgIdx(i);
-                          }}
-                          className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                            i === wiseAiImgIdx 
-                              ? 'bg-accent w-4.5' 
-                              : 'bg-slate-300 hover:bg-slate-400 w-2'
-                          }`}
-                          aria-label={`Go to image ${i + 1}`}
-                        />
+
+                    {/* Diagram Bottom Stack Tags */}
+                    <div className="flex flex-wrap items-center justify-center gap-1.5 pt-2.5 border-t border-slate-200/70">
+                      {['Model Context Protocol', 'Docker Container', 'Scalable Inference'].map((tag) => (
+                        <span key={tag} className="text-[9px] font-mono font-semibold text-slate-600 bg-white px-2 py-0.5 rounded border border-slate-200">
+                          {tag}
+                        </span>
                       ))}
                     </div>
-                    {/* Thank you note below the photo frame */}
-                    <div className="mt-4 text-center w-full max-w-[380px] px-1">
-                      <p className="text-[11px] text-slate-400 font-medium select-none">
-                        Click any image above to expand the full-size proof layout.
-                      </p>
-                      <div className="mt-3 p-3 rounded-xl bg-purple-50/40 border border-purple-100/60 text-left hover:bg-purple-50/60 transition-colors duration-200">
-                        <p className="text-xs text-purple-900 leading-relaxed font-sans">
-                          <span className="font-bold text-purple-950 block mb-0.5 text-[10px] uppercase tracking-wider select-none">Supervisor Acknowledgment</span>
-                          Immense gratitude to my supervisors, Mr. Alex Koh Jia Yi and Ms. Kew Yue Shuen, for their invaluable guidance, mentorship, and support throughout this internship journey.
-                        </p>
-                      </div>
+                  </div>
+                  <p className="text-[11px] text-slate-400 font-medium select-none text-center mt-3">
+                    Remote backend architecture & Model Context Protocol (MCP) server structure.
+                  </p>
+                </div>
+              )}
+
+              {/* Wise AI: Existing Image Carousel */}
+              {exp.id === 'wise-ai' && (
+                <div className="w-full max-w-[440px] lg:max-w-full flex flex-col items-center">
+                  <div
+                    onClick={() => onOpenLightbox(wiseAiImages[wiseAiImgIdx], `${exp.role} at ${exp.organization} - Image ${wiseAiImgIdx + 1}`)}
+                    className="group relative overflow-hidden rounded-xl border-2 border-slate-200/80 bg-slate-50 p-1.5 cursor-zoom-in shadow-sm hover:shadow-lg hover:border-accent/40 transition-all duration-300 w-full aspect-[4/3] flex items-center justify-center"
+                    title="Click to expand cert/photo"
+                  >
+                    <motion.img
+                      key={wiseAiImgIdx}
+                      initial={{ opacity: 0.85, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4 }}
+                      src={wiseAiImages[wiseAiImgIdx]}
+                      alt={`${exp.role} Internship Showcase ${wiseAiImgIdx + 1}`}
+                      referrerPolicy="no-referrer"
+                      className="h-full w-full object-cover rounded-lg transition-transform duration-300 group-hover:scale-[1.03]"
+                      onError={(e) => {
+                        e.currentTarget.src = wiseAiImgIdx === 0 ? 'https://picsum.photos/seed/wise1/500/375' : 'https://picsum.photos/seed/wise2/500/375';
+                      }}
+                    />
+                    <div className="absolute top-3 right-3 rounded-full bg-black/60 backdrop-blur-md p-1.5 text-white opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                      <ZoomIn className="h-4 w-4" />
                     </div>
                   </div>
-                ) : (
-                  <div className="w-full max-w-[320px] flex flex-col items-center">
-                    <div
-                      onClick={() => onOpenLightbox(exp.imagePath!, `${exp.role} at ${exp.organization}`)}
-                      className="group relative overflow-hidden rounded-xl border border-slate-200 bg-slate-50 p-1 cursor-zoom-in shadow-xs hover:shadow-md transition-shadow w-full aspect-[4/3] flex items-center justify-center"
-                      title="Click to expand cert/photo"
-                    >
-                      <img
-                        src={exp.imagePath}
-                        alt={`${exp.role} Internship`}
-                        referrerPolicy="no-referrer"
-                        className="h-full w-full object-cover rounded-lg transition-transform duration-300 group-hover:scale-105"
-                        onError={(e) => {
-                          // fallback representation
-                          e.currentTarget.src = 'https://picsum.photos/seed/wiseai/500/375';
+                  
+                  {/* Sliding indicator dots */}
+                  <div className="flex gap-2 mt-3 z-10">
+                    {wiseAiImages.map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setWiseAiImgIdx(i);
                         }}
+                        className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                          i === wiseAiImgIdx 
+                            ? 'bg-accent w-4.5' 
+                            : 'bg-slate-300 hover:bg-slate-400 w-2'
+                        }`}
+                        aria-label={`Go to image ${i + 1}`}
                       />
-                      <div className="absolute top-2 right-2 rounded-full bg-black/55 backdrop-blur-md p-1.5 text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                        <ZoomIn className="h-4 w-4" />
-                      </div>
-                      <div className="absolute bottom-2 left-2 right-2 rounded bg-black/60 backdrop-blur-xs p-1.5 text-center text-[10px] font-bold text-white tracking-wide">
-                        WISE AI Internship Proof Thumbnail
-                      </div>
-                    </div>
-                    <p className="text-[11px] text-slate-400 mt-2 text-center">
-                      Click to inspect the optimization metrics documentation
-                    </p>
+                    ))}
                   </div>
-                )}
-              </div>
-            )}
+                  {/* Thank you note below the photo frame */}
+                  <div className="mt-4 text-center w-full max-w-[380px] px-1">
+                    <p className="text-[11px] text-slate-400 font-medium select-none">
+                      Click any image above to expand the full-size proof layout.
+                    </p>
+                    <div className="mt-3 p-3 rounded-xl bg-purple-50/40 border border-purple-100/60 text-left hover:bg-purple-50/60 transition-colors duration-200">
+                      <p className="text-xs text-purple-900 leading-relaxed font-sans">
+                        <span className="font-bold text-purple-950 block mb-0.5 text-[10px] uppercase tracking-wider select-none">Supervisor Acknowledgment</span>
+                        Immense gratitude to my supervisors, Mr. Alex Koh Jia Yi and Ms. Kew Yue Shuen, for their invaluable guidance, mentorship, and support throughout this internship journey.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         ))}
       </section>
 
-      {/* SECTION 2: Research Engineering */}
+      {/* SECTION 2: Academic & Teaching Experience */}
+      <section id="teaching-experience-section" className="space-y-8">
+        <div className="border-b border-slate-200 pb-4">
+          <h2 className="flex items-center gap-2.5 text-2xl font-extrabold tracking-tight text-slate-900">
+            <GraduationCap className="h-6 w-6 text-accent" />
+            Academic & Teaching Experience
+          </h2>
+          <p className="text-sm text-slate-500 mt-1">Curriculum mentorship, technical education, and computer science instructional delivery</p>
+        </div>
+
+        {teachingExperience.map((exp) => (
+          <div
+            key={exp.id}
+            id={`experience-card-${exp.id}`}
+            className="grid grid-cols-1 gap-y-6 gap-x-8 lg:grid-cols-12 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm hover:border-accent/40 hover:-translate-y-[2px] hover:shadow-md transition-all duration-300"
+          >
+            {/* Header spanning the entire width */}
+            <div className="col-span-1 lg:col-span-12 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 border-b border-dashed border-slate-100 pb-5">
+              <div className="space-y-1.5">
+                <h3 className="text-2xl font-bold tracking-tight text-slate-900">{exp.role}</h3>
+                <div className="flex flex-wrap items-center gap-x-2 text-sm font-semibold text-slate-600">
+                  <span className="text-accent">{exp.organization}</span>
+                  <span className="text-slate-300">•</span>
+                  <span>{exp.location}</span>
+                </div>
+              </div>
+              <span className="inline-block shrink-0 rounded-full bg-slate-100 px-3 py-1.5 text-xs font-mono font-bold text-slate-600 border border-slate-200/50 sm:self-start">
+                {exp.duration}
+              </span>
+            </div>
+
+            {/* Left side details */}
+            <div className="lg:col-span-6 lg:self-center space-y-6">
+
+              {/* Sub-metrics inside the experience block */}
+              {exp.metrics && (
+                <div id={`metrics-${exp.id}`} className="grid grid-cols-3 gap-3 bg-stone-50 p-4 rounded-xl border border-slate-100/80">
+                  {exp.metrics.map((m, key) => (
+                    <div key={key} className="text-center">
+                      <span className="block font-mono text-base font-extrabold text-slate-900">{m.value}</span>
+                      <span className="block text-[10px] uppercase font-bold text-slate-400 mt-0.5">{m.label}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Core description list */}
+              <ul className="space-y-3.5 list-none text-slate-600 leading-relaxed text-sm">
+                {exp.bullets.map((bullet, key) => {
+                  const parts = bullet.split(':');
+                  const heading = parts.length > 1 ? parts[0] + ':' : '';
+                  const body = parts.length > 1 ? parts.slice(1).join(':') : bullet;
+                  return (
+                    <li key={key} className="flex items-start gap-2.5">
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                      <span>
+                        {heading && <strong className="text-slate-800 font-bold">{heading}</strong>}
+                        {body}
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+
+            {/* Right side media showcase */}
+            <div className="lg:col-span-6 lg:self-center flex flex-col justify-start items-center">
+              <div className="w-full max-w-[560px] lg:max-w-full flex flex-col items-center">
+                <div className="grid grid-cols-2 gap-3 w-full">
+                  {tutoringImages.map((img, tIdx) => (
+                    <div
+                      key={tIdx}
+                      onClick={() => onOpenLightbox(img.src, `GoLearn Tutoring - ${img.label}`)}
+                      className={`group relative overflow-hidden rounded-xl border border-slate-200/90 bg-white p-1.5 cursor-zoom-in shadow-xs hover:shadow-lg hover:border-accent/50 hover:-translate-y-0.5 transition-all duration-300 aspect-[16/11] sm:aspect-[4/3] flex items-center justify-center ${
+                        tIdx === 4 ? 'col-span-2 justify-self-center w-full max-w-[calc(50%-0.375rem)]' : ''
+                      }`}
+                      title={`Click to zoom: ${img.label}`}
+                    >
+                      <img
+                        src={img.src}
+                        alt={img.label}
+                        referrerPolicy="no-referrer"
+                        className="h-full w-full object-cover object-top rounded-lg transition-transform duration-300 group-hover:scale-[1.03]"
+                        onError={(e) => {
+                          e.currentTarget.src = img.fallback || 'https://picsum.photos/seed/tutor/400/300';
+                        }}
+                      />
+                      <div className="absolute top-2 right-2 rounded-full bg-black/65 backdrop-blur-md p-1.5 text-white opacity-0 group-hover:opacity-100 transition-opacity z-10 shadow-sm">
+                        <ZoomIn className="h-3.5 w-3.5" />
+                      </div>
+                      <div className="absolute bottom-2 left-2 right-2 rounded-md bg-slate-950/80 backdrop-blur-xs px-2 py-1 text-center text-[10px] font-semibold text-white tracking-tight truncate select-none border border-white/10">
+                        {img.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-[11px] text-slate-400 font-medium select-none text-center mt-3">
+                  Click any digital whiteboard lesson above to expand full-size proof.
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </section>
+
+      {/* SECTION 3: Research Engineering */}
       <section id="research-engineering-section" className="space-y-8">
         <div className="border-b border-slate-200 pb-4">
           <h2 className="flex items-center gap-2.5 text-2xl font-extrabold tracking-tight text-slate-900">
@@ -228,7 +377,7 @@ export default function ExperienceTab({ onOpenLightbox }: ExperienceTabProps) {
             </div>
 
             {/* Left side details */}
-            <div className={exp.imagePath ? 'lg:col-span-7 space-y-6' : 'space-y-6'}>
+            <div className={exp.imagePath ? 'lg:col-span-7 space-y-5' : 'space-y-5'}>
 
               <ul className="space-y-3.5 list-none text-slate-600 leading-relaxed text-sm">
                 {exp.bullets.map((bullet, key) => {
@@ -246,6 +395,68 @@ export default function ExperienceTab({ onOpenLightbox }: ExperienceTabProps) {
                   );
                 })}
               </ul>
+
+              {/* Research Outputs & Direct Link to Research Tab */}
+              {(exp.id === 'humac' || exp.id === 'lab-assistant') && (
+                <div className="pt-4 border-t border-slate-100/90 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <div className="flex h-6 w-6 items-center justify-center rounded-md bg-accent/15 text-accent">
+                        <BookOpen className="h-3.5 w-3.5" />
+                      </div>
+                      <h4 className="text-xs font-bold uppercase tracking-wider text-slate-800">
+                        Associated Research Outputs & Publications
+                      </h4>
+                    </div>
+                    <span className="text-[10px] font-mono font-bold text-accent bg-purple-50 px-2 py-0.5 rounded-full border border-purple-100">
+                      3 Papers &bull; 1 Dataset
+                    </span>
+                  </div>
+
+                  {/* Highlights Grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    <div className="p-2.5 rounded-lg bg-slate-50/90 border border-slate-200/80 hover:bg-purple-50/40 hover:border-accent/30 transition-colors">
+                      <div className="flex items-center gap-1.5 text-[10px] font-bold text-accent mb-0.5">
+                        <FileText className="h-3 w-3 shrink-0" />
+                        <span>Q2 Journal Article (Co-First)</span>
+                      </div>
+                      <p className="text-[11px] font-semibold text-slate-800 leading-tight">
+                        Smart City UAV Traffic Management (JECE 2026)
+                      </p>
+                    </div>
+
+                    <div className="p-2.5 rounded-lg bg-slate-50/90 border border-slate-200/80 hover:bg-purple-50/40 hover:border-accent/30 transition-colors">
+                      <div className="flex items-center gap-1.5 text-[10px] font-bold text-accent mb-0.5">
+                        <Sparkles className="h-3 w-3 shrink-0" />
+                        <span>2 Proceedings & Dataset</span>
+                      </div>
+                      <p className="text-[11px] font-semibold text-slate-800 leading-tight">
+                        IWAIT '26 &bull; WREN '25 &bull; MY-VID (9,000+ annotations)
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Direct Navigation Button to Research Tab */}
+                  {setActiveTab && (
+                    <button
+                      onClick={() => {
+                        setActiveTab('research');
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      className="group w-full flex items-center justify-between px-4 py-2.5 rounded-xl bg-purple-50/80 border border-accent/30 text-accent font-bold text-xs hover:bg-accent hover:text-white hover:border-accent hover:shadow-md transition-all duration-300 cursor-pointer"
+                    >
+                      <span className="flex items-center gap-2">
+                        <FileText className="h-4 w-4 transition-transform group-hover:scale-110" />
+                        <span>Explore Full Research Manuscripts & Benchmarks</span>
+                      </span>
+                      <div className="flex items-center gap-1 text-[11px] font-semibold">
+                        <span>View in Research Tab</span>
+                        <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                      </div>
+                    </button>
+                  )}
+                </div>
+              )}
             </div>
 
             {/* Right side image showcase with thank-you acknowledgment box */}
