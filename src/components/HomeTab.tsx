@@ -119,7 +119,7 @@ export default function HomeTab({ onOpenLightbox, setActiveTab }: HomeTabProps) 
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-6 border-t border-slate-200">
             <div className="flex flex-row gap-5 items-center text-slate-500">
               <a
-                href="https://www.linkedin.com/in/z-l-660b66188/"
+                href="https://www.linkedin.com/in/zi-xuan-l-660b66188/"
                 target="_blank"
                 rel="noopener noreferrer"
                 title="LinkedIn Profile"
